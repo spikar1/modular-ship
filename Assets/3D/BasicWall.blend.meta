@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 8c065a3c5ef823b4fabcabcc5d494a83
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: 00
+    100004: 01
+    100006: 02
+    100008: 03
+    100010: 04
+    100012: 05
+    100014: 06
+    100016: 07
+    100018: corner_00
+    100020: diagonal_00
+    100022: straight_00
+    100024: diagonal_01
+    100026: straight_01
+    100028: corner_01
+    100030: straight_01_collision
+    100032: corner_01_collision
+    100034: diagonal_01_collision
+    100036: corner_00_col
+    100038: corner_01_col
+    100040: diagonal_00_col
+    100042: diagonal_01_col
+    100044: straight_00_col
+    100046: straight_01_col
+    400000: //RootNode
+    400002: 00
+    400004: 01
+    400006: 02
+    400008: 03
+    400010: 04
+    400012: 05
+    400014: 06
+    400016: 07
+    400018: corner_00
+    400020: diagonal_00
+    400022: straight_00
+    400024: diagonal_01
+    400026: straight_01
+    400028: corner_01
+    400030: straight_01_collision
+    400032: corner_01_collision
+    400034: diagonal_01_collision
+    400036: corner_00_col
+    400038: corner_01_col
+    400040: diagonal_00_col
+    400042: diagonal_01_col
+    400044: straight_00_col
+    400046: straight_01_col
+    2100000: unnamed
+    2300000: //RootNode
+    2300002: 00
+    2300004: 01
+    2300006: 02
+    2300008: 03
+    2300010: 04
+    2300012: 05
+    2300014: 06
+    2300016: 07
+    2300018: corner_00
+    2300020: diagonal_00
+    2300022: straight_00
+    2300024: diagonal_01
+    2300026: straight_01
+    2300028: corner_01
+    2300030: straight_01_collision
+    2300032: corner_01_collision
+    2300034: diagonal_01_collision
+    2300036: corner_00_col
+    2300038: corner_01_col
+    2300040: diagonal_00_col
+    2300042: diagonal_01_col
+    2300044: straight_00_col
+    2300046: straight_01_col
+    3300000: //RootNode
+    3300002: 00
+    3300004: 01
+    3300006: 02
+    3300008: 03
+    3300010: 04
+    3300012: 05
+    3300014: 06
+    3300016: 07
+    3300018: corner_00
+    3300020: diagonal_00
+    3300022: straight_00
+    3300024: diagonal_01
+    3300026: straight_01
+    3300028: corner_01
+    3300030: straight_01_collision
+    3300032: corner_01_collision
+    3300034: diagonal_01_collision
+    3300036: corner_00_col
+    3300038: corner_01_col
+    3300040: diagonal_00_col
+    3300042: diagonal_01_col
+    3300044: straight_00_col
+    3300046: straight_01_col
+    4300000: Cube
+    4300002: 00
+    4300004: 01
+    4300006: 07
+    4300008: 04
+    4300010: 06
+    4300012: 03
+    4300014: 05
+    4300016: 02
+    4300018: diagonal_00
+    4300020: straight_00
+    4300022: corner_00
+    4300024: diagonal_01
+    4300026: straight_01
+    4300028: corner_01
+    4300030: straight_01_collision
+    4300032: corner_01_collision
+    4300034: diagonal_01_collision
+    4300036: diagonal_00_col
+    4300038: straight_00_col
+    4300040: corner_00_col
+    4300042: diagonal_01_col
+    4300044: corner_01_col
+    4300046: straight_01_col
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

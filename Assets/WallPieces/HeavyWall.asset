@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ddda3fbdb102754e8233cbe9b6259cd, type: 3}
+  m_Name: HeavyWall
+  m_EditorClassIdentifier: 
+  wallBlenderFile: {fileID: 100000, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  corner:
+  - {fileID: 4300022, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300028, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  straight:
+  - {fileID: 4300020, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300026, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  diagonal:
+  - {fileID: 4300018, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300024, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  cornerCol:
+  - {fileID: 4300040, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300044, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300040, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300044, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300040, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300044, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300040, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300044, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300040, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300044, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300040, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300044, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  straightCol:
+  - {fileID: 4300038, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300046, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300038, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300046, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300038, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300046, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300038, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300046, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300038, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300046, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300038, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300046, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  diagonalCol:
+  - {fileID: 4300036, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300042, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300036, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300042, guid: 8c065a3c5ef823b4fabcabcc5d494a83, type: 3}
+  - {fileID: 4300036, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300042, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300036, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300042, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300036, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300042, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300036, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  - {fileID: 4300042, guid: fdb3934a310677f488c3391566e89fd0, type: 3}
+  material: {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  durability: 150
+  integrity: 60
