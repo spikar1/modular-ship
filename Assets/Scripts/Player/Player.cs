@@ -11,7 +11,7 @@ public class Player : Entity
 
     public void Update()
     {
-        moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         leftBumper = Input.GetKey(KeyCode.Q);
         rightBumper = Input.GetKey(KeyCode.E);
 
