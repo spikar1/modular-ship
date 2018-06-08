@@ -48,13 +48,13 @@ public class ColliderCreator : MonoBehaviour {
         }
 
         // Start edge trace
-        edgeTrace(edges[0]);
+        EdgeTrace(edges[0]);
         return;
     }
 
 
 
-    void edgeTrace(Edge edge) {
+    void EdgeTrace(Edge edge) {
         // Add this edge's vert1 coords to the point list
         points.Add(vertices[edge.vert1]);
 
@@ -67,7 +67,7 @@ public class ColliderCreator : MonoBehaviour {
         // Find next edge that contains vert2
         foreach (Edge nextEdge in edges) {
             if (nextEdge.vert1 == vert2) {
-                edgeTrace(nextEdge);
+                EdgeTrace(nextEdge);
                 return;
             }
         }
@@ -82,13 +82,11 @@ public class ColliderCreator : MonoBehaviour {
             points.Clear();
 
             // Increment path index
-
-            print("heyyo");
             currentPathIndex++;
         }
         // Start next edge trace if there are edges left
         if (edges.Count > 0) {
-            edgeTrace(edges[0]);
+            EdgeTrace(edges[0]);
         }
     }
 }

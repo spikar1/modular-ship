@@ -218,8 +218,11 @@ public class RoomNodeEditor : Editor {
             go.AddComponent<Wall>();
         Wall w = go.GetComponent<Wall>();
         RoomNode rn = go.GetComponent<RoomNode>();
-        w.durability = rn.wallPiece.durability;
-        w.integrity = rn.wallPiece.integrity;
+        if (!EditorApplication.isPlaying) {
+            w.durability = rn.wallPiece.durability;
+            w.integrity = rn.wallPiece.integrity;
+        }
+        
     }
 
     Quaternion GetRotationFromOrientation(WallOrientation wo) {

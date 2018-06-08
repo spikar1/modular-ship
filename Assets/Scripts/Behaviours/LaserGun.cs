@@ -21,8 +21,8 @@ public class LaserGun : MonoBehaviour, IInputReciever {
 
     void Shoot() {
         RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up, transform.up);
-        if (hit) {
-
+        if (hit && hit.collider.GetComponent<IDamagable>() != null) {
+            hit.collider.GetComponent<IDamagable>().Damage(transform.up, 1);
         }
 
         Debug.DrawRay(transform.position + transform.up, transform.up * (hit?hit.distance : 50), Color.red);
