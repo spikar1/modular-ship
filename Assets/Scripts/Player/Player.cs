@@ -50,9 +50,8 @@ public class Player : Entity
         }
         dir = moveInput;
         //Vector2 lookDir;
-        Vector3 velocity = new Vector3(dir.x, dir.y, 0) * maxSpeed;
-        if(moveInput != Vector2.zero)
-            controller.Move(velocity * Time.deltaTime);
+        Vector2 velocity = new Vector3(dir.x, dir.y) * maxSpeed;
+        controller.Move(velocity * Time.deltaTime);
         //transform.LookAt(lookDir.toVector3() + transform.position, Vector3.back);
     }
 

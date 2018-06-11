@@ -2,6 +2,27 @@ using UnityEngine;
 using System.Collections;
 
 
+
+public class Controller : MonoBehaviour {
+
+    Rigidbody2D rb;
+
+
+    private void Start() {
+        rb = GetComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+    public void Move(Vector2 vel) {
+        rb.drag = 0;
+        if (vel != Vector2.zero)
+            rb.AddRelativeForce(vel, ForceMode2D.Impulse);
+        else
+            rb.drag = 100;
+    }
+}
+
+/*
 [RequireComponent(typeof(Collider2D))]
 public class Controller : MonoBehaviour {
     [HideInInspector]
@@ -106,3 +127,4 @@ public class Controller : MonoBehaviour {
         public Vector2 bottomLeft, bottomRight;
     }
 }
+*/
