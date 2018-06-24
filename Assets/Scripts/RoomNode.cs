@@ -204,7 +204,7 @@ public class RoomNodeEditor : Editor {
             go.GetComponent<MeshRenderer>().material = roomNode.wallPiece.material;
 
             go.transform.rotation = GetRotationFromOrientation(wo);
-
+           
         }
     }
 
