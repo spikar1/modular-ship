@@ -70,7 +70,7 @@ public class Entity : MonoBehaviour
     }
     public virtual void Interact()
     {
-        Collider2D col = Physics2D.OverlapCircle(transform.position, 2, interactableMask);
+        Collider2D col = Physics2D.OverlapCircle(transform.position, .4f, interactableMask);
 
         if (!col)
             return;

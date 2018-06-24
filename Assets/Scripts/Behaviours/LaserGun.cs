@@ -5,6 +5,8 @@ using UnityEngine;
 public class LaserGun : MonoBehaviour, IInputReciever {
 
     bool isFiring;
+    float angle = 0;
+    public float maxRotation;
 
     public void IsInteracting(bool action1Down, bool action1Up, Vector2 axis) {
         if (action1Down)
@@ -16,7 +18,14 @@ public class LaserGun : MonoBehaviour, IInputReciever {
             Shoot();
         }
 
-        transform.Rotate(Vector3.forward, -axis.x * 2);
+        RotateTurret(axis);
+        
+    }
+
+    void RotateTurret(Vector2 axis) {
+        angle = Mathf.Clamp(transform.localRotation.eulerAngles.z + -axis.x * 2, 0, maxRotation);
+        print(angle);
+        transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
     void Shoot() {
@@ -26,6 +35,12 @@ public class LaserGun : MonoBehaviour, IInputReciever {
         }
 
         Debug.DrawRay(transform.position + transform.up, transform.up * (hit?hit.distance : 50), Color.red);
+    }
+
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(transform.position, transform.parent.up * 2);
+        Gizmos.DrawRay(transform.position, Quaternion.Euler(0, 0, maxRotation) * transform.parent.up * 2);
     }
 
 

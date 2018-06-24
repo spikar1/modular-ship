@@ -13,7 +13,7 @@ public class Seat : Interactable
     bool entityFirstFrame = true; 
 
     public GameObject[] behaviours;
-
+    
     public void Start()
     {
         seatPoint = transform.position;
@@ -47,7 +47,6 @@ public class Seat : Interactable
             if (behaviour == null) {
                 Debug.LogError("GameObject should contain IBehaviour!");
             }
-            behaviour.OnEjected();
         }
     }
 
@@ -59,7 +58,6 @@ public class Seat : Interactable
             if (behaviour == null) {
                 Debug.LogError("GameObject should contain IBehaviour!");
             }
-            behaviour.OnSeated();
         }
     }
 
