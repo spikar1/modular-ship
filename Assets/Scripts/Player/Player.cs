@@ -12,6 +12,7 @@ public class Player : Entity
     public void Update()
     {
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        moveInput = Camera.main.transform.TransformDirection(moveInput);
         leftBumper = Input.GetKey(KeyCode.Q);
         rightBumper = Input.GetKey(KeyCode.E);
 
@@ -37,9 +38,6 @@ public class Player : Entity
         if (Input.GetButtonDown("Jump")) {
             Interact();
         }
-
-        Camera.main.transform.parent = transform;
-        Camera.main.transform.position = new Vector3(transform.position.x,  transform.position.y, Camera.main.transform.position.z);
         if (directionParent)
         {
             dir = directionParent.right * moveInput.x + directionParent.up * moveInput.y;
