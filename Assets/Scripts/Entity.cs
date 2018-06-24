@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Controller))]
 public class Entity : MonoBehaviour
 {
-    public enum State { normal, seated, dead, building};
+    public enum State { normal, seated, dead};
     public State state = State.normal;
 
     #region Stats
@@ -43,9 +43,6 @@ public class Entity : MonoBehaviour
         seat.inputs.action1Down = Input.GetButtonDown("Fire1");
         seat.inputs.action1Up = Input.GetButtonUp("Fire1");
         seat.inputs.action1 = Input.GetButton("Fire1");
-
-        
-
     }
     public virtual void NormalStateUpdate() {
     }

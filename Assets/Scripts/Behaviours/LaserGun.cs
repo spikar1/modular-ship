@@ -6,7 +6,7 @@ public class LaserGun : MonoBehaviour, IInputReciever {
 
     bool isFiring;
 
-    public void IsInteracting(bool action1Down, bool action1Up, Vector2 axis) {
+    public void ReceiveInput(bool action1Down, bool action1Up, Vector2 axis) {
         if (action1Down)
             isFiring = true;
         if (action1Up)

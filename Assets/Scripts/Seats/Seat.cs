@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class Seat : Interactable
+public sealed class Seat : Interactable
 {
-    //public Vector2 directionalInput;
     public Entity entity;
     public Transform ejectTransform;
     public Inputs inputs;
@@ -22,7 +20,7 @@ public class Seat : Interactable
             ejectPoint = ejectTransform.position;
     }
 
-    public virtual void Update()
+    public void Update()
     {
         seatPoint = transform.position;
         ejectPoint = ejectTransform.position;
@@ -39,7 +37,7 @@ public class Seat : Interactable
             entityFirstFrame = true;
     }
 
-    public virtual void OnEject(Entity _entity)
+    public void OnEject(Entity _entity)
     {
         //print(entity.name + " got up from " + name);
         for (int i = 0; i < behaviours.Length; i++) {
@@ -47,11 +45,10 @@ public class Seat : Interactable
             if (behaviour == null) {
                 Debug.LogError("GameObject should contain IBehaviour!");
             }
-            behaviour.OnEjected();
         }
     }
 
-    public virtual void OnSeated(Entity _entity)
+    public void OnSeated(Entity _entity)
     {
         //print(entity.name + " sat down on " + name);
         for (int i = 0; i < behaviours.Length; i++) {
@@ -59,18 +56,17 @@ public class Seat : Interactable
             if (behaviour == null) {
                 Debug.LogError("GameObject should contain IBehaviour!");
             }
-            behaviour.OnSeated();
         }
     }
 
-    public virtual void WhileSeated(Entity _entity)
+    public void WhileSeated(Entity _entity)
     {
         for (int i = 0; i < behaviours.Length; i++) {
             IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
             if (behaviour == null) {
                 Debug.LogError("GameObject should contain IBehaviour!");
             }
-            behaviour.IsInteracting(
+            behaviour.ReceiveInput(
                 inputs.action1Down,
                 inputs.action1Up,
                 inputs.axis);
