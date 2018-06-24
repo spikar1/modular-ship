@@ -12,7 +12,6 @@ public class Player : Entity
     public void Update()
     {
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveInput = Camera.main.transform.TransformDirection(moveInput);
         leftBumper = Input.GetKey(KeyCode.Q);
         rightBumper = Input.GetKey(KeyCode.E);
 
@@ -34,6 +33,7 @@ public class Player : Entity
 
     public override void NormalStateUpdate()
     {
+        moveInput = Camera.main.transform.TransformDirection(moveInput);
         base.NormalStateUpdate();
         if (Input.GetButtonDown("Jump")) {
             Interact();
