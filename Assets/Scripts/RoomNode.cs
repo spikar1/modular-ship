@@ -62,7 +62,7 @@ public class RoomNodeEditor : Editor {
                 showMeshPopup = false;
                 break;
             }
-            Debug.Log(mf.sharedMesh.name.Split('_')[0]);
+            //Debug.Log(mf.sharedMesh.name.Split('_')[0]);
             if (i != 0) {
                 MeshFilter lastmf = Selection.gameObjects[i - 1].GetComponent<MeshFilter>();
                 if (mf.sharedMesh.name.Split('_')[0] != lastmf.sharedMesh.name.Split('_')[0])

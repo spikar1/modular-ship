@@ -15,6 +15,7 @@ public class Entity : MonoBehaviour
     public float acceleration = 10;
     public Seat seat;
     public LayerMask interactableMask;
+    public LayerMask collidableMask;
     public Transform directionParent;
 
     [HideInInspector]
@@ -78,7 +79,7 @@ public class Entity : MonoBehaviour
             throw new System.Exception("Only GameObjects with an Interactable() class can have the Interactable mask");
 
         Interactable _inter = col.GetComponent<Interactable>();
-        print(_inter.transform.name);
+        //print(_inter.transform.name);
         _inter.OnInteract(this);
         
     }

@@ -51,7 +51,7 @@ public class Player : Entity
         dir = moveInput;
         //Vector2 lookDir;
         Vector2 velocity = new Vector3(dir.x, dir.y) * maxSpeed;
-        controller.Move(velocity * Time.deltaTime);
+        controller.Move(velocity * Time.deltaTime, collidableMask);
         //transform.LookAt(lookDir.toVector3() + transform.position, Vector3.back);
     }
 

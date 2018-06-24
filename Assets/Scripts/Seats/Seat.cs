@@ -41,7 +41,7 @@ public class Seat : Interactable
 
     public virtual void OnEject(Entity _entity)
     {
-        print(entity.name + " got up from " + name);
+        //print(entity.name + " got up from " + name);
         for (int i = 0; i < behaviours.Length; i++) {
             IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
             if (behaviour == null) {
@@ -53,7 +53,7 @@ public class Seat : Interactable
 
     public virtual void OnSeated(Entity _entity)
     {
-        print(entity.name + " sat down on " + name);
+        //print(entity.name + " sat down on " + name);
         for (int i = 0; i < behaviours.Length; i++) {
             IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
             if (behaviour == null) {

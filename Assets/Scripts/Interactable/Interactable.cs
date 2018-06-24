@@ -8,7 +8,7 @@ public class Interactable : MonoBehaviour {
 
     public virtual void OnInteract(Entity _entity)
     {
-        print(_entity.transform.name + " interacted with " + transform.name);
+        //print(_entity.transform.name + " interacted with " + transform.name);
         actionsOnInteract.Invoke();
     }
     
