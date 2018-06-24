@@ -11,7 +11,7 @@ public sealed class Seat : Interactable
     bool entityFirstFrame = true; 
 
     public GameObject[] behaviours;
-
+    
     public void Start()
     {
         seatPoint = transform.position;
