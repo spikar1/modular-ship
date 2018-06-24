@@ -28,13 +28,5 @@ public class LaserGun : MonoBehaviour, IInputReciever {
         Debug.DrawRay(transform.position + transform.up, transform.up * (hit?hit.distance : 50), Color.red);
     }
 
-    public void OnEjected() {
-
-    }
-
-    public void OnSeated() {
-
-    }
-
 
 }

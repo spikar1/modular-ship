@@ -10,7 +10,7 @@ public class Seat : Interactable
 
     public Vector3 seatPoint, ejectPoint;
 
-    bool entityFirstFrame = true;
+    bool entityFirstFrame = true; 
 
     public GameObject[] behaviours;
 
