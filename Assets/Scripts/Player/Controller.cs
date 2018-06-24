@@ -19,9 +19,9 @@ public class Controller : MonoBehaviour {
         else
             rb.drag = 100;*/
 
-        lastPos = transform.position;
+        lastPos = transform.localPosition;
         
-        if (!Physics2D.OverlapCircle((Vector2)transform.position + vel, .1f, collidableMask)){
+        if (!Physics2D.OverlapCircle((Vector2)transform.localPosition + vel, .1f, collidableMask)){
             transform.Translate(vel);
         }
     }

@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Networking.unity
+    guid: 742112fa068c90a4897ea53a95d6d59d
   m_configObjects: {}
