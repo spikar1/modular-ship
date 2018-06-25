@@ -1,12 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 public class Player : Entity
 {
     public override void Start()
     {
         base.Start();
-        transform.parent = directionParent;
+        if (!isLocalPlayer)
+            Destroy(transform.GetChild(0).gameObject);
+        //transform.parent = directionParent;
+    }
+
+    public override void OnStartLocalPlayer() {
+        if (!isLocalPlayer)
+            return;
+        transform.parent = GameObject.FindGameObjectWithTag("Ship").transform;
     }
 
     public void Update()
@@ -24,7 +33,7 @@ public class Player : Entity
                 NormalStateUpdate();
                 break;
             case State.seated:
-                Seated();
+                SeatedStateUpdate();
                 break;
             case State.dead:
                 break;
@@ -57,8 +66,8 @@ public class Player : Entity
     }
 
 
-    public override void Seated() {
-        base.Seated();
+    public override void SeatedStateUpdate() {
+        base.SeatedStateUpdate();
         if (Input.GetButtonDown("Jump")) {
             CmdInteract();
         }

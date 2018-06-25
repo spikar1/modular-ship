@@ -19,9 +19,9 @@ public class Controller : NetworkBehaviour {
         else
             rb.drag = 100;*/
 
-        lastPos = transform.localPosition;
+        lastPos = transform.position;
         
-        if (!Physics2D.OverlapCircle((Vector2)transform.localPosition + vel, .1f, collidableMask)){
+        if (!Physics2D.OverlapCircle((Vector2)transform.position + vel, .1f, collidableMask)){
             transform.Translate(vel);
         }
     }

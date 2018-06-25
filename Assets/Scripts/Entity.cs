@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-[RequireComponent(typeof(Controller))]
+//[RequireComponent(typeof(Controller))]
 public class Entity : NetworkBehaviour
 {
     public enum State { normal, seated, dead};
@@ -31,7 +31,7 @@ public class Entity : NetworkBehaviour
         controller = GetComponent<Controller>();
     }
 
-    virtual public void Seated()
+    virtual public void SeatedStateUpdate()
     {
         if (!seat)
             Debug.LogError(name + "is trying to act seated when there is no seat registered");
@@ -64,7 +64,7 @@ public class Entity : NetworkBehaviour
         //controller.rb.isKinematic = true;
         //controller.col.enabled = false;
         transform.position = seat.seatPoint;
-        transform.SetParent(seat.transform);
+        //transform.parent = seat.transform;
     }
 
     [Command]

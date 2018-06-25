@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class PlayerCamera : MonoBehaviour {
 
 	void Update () {
+            
         if (Input.GetMouseButton(2)) {
             RotateCamera();
         }

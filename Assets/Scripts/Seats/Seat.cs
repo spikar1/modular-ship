@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 public sealed class Seat : Interactable
 {
+
     public Entity entity;
+    [SyncVar]
+    public bool isOcupied;
     public Transform ejectTransform;
     public Inputs inputs;
 
@@ -84,7 +88,7 @@ public sealed class Seat : Interactable
                 entity = _entity;
                 entity.seat = this;
                 entity.transform.position = transform.position;
-                entity.transform.parent = transform;
+                //entity.transform.parent = transform;
                 entity.state = Entity.State.seated;
                 break;
             case Entity.State.seated:
@@ -92,7 +96,7 @@ public sealed class Seat : Interactable
                 entity = null;
                 _entity.seat = null;
                 _entity.transform.position = ejectPoint;
-                _entity.transform.parent = _entity.directionParent;
+                //_entity.transform.parent = _entity.directionParent;
                 _entity.state = Entity.State.normal;
                 break;
             case Entity.State.dead:
