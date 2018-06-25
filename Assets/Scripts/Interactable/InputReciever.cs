@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 interface IInputReciever {
-    void ReceiveInput(bool action1Down, bool action1Up, Vector2 axis);
+    void ReceiveInput(Inputs inputs);
 }

@@ -1,15 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
-using System.Collections;
 
 public class Interactable : MonoBehaviour {
 
     public UnityEvent actionsOnInteract;
+    public EntityEvent actionsOnInteractWithEntity;
 
-    public virtual void OnInteract(Entity _entity)
+    public virtual void OnInteract(Entity entity)
     {
-        print(_entity.transform.name + " interacted with " + transform.name);
         actionsOnInteract.Invoke();
+        actionsOnInteractWithEntity.Invoke(entity);
     }
-    
 }
+
+[Serializable]
+public class EntityEvent : UnityEvent<Entity> {}

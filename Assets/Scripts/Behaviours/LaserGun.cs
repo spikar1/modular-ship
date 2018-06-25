@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LaserGun : MonoBehaviour, IInputReciever {
 
@@ -8,18 +6,17 @@ public class LaserGun : MonoBehaviour, IInputReciever {
     float angle = 0;
     public float maxRotation;
 
-    public void ReceiveInput(bool action1Down, bool action1Up, Vector2 axis) {
-        if (action1Down)
+    public void ReceiveInput(Inputs inputs) {
+        if (inputs.action1Down)
             isFiring = true;
-        if (action1Up)
+        if (inputs.action1Up)
             isFiring = false;
 
         if (isFiring) {
             Shoot();
         }
 
-        RotateTurret(axis);
-        
+        RotateTurret(inputs.axis);
     }
 
     void RotateTurret(Vector2 axis) {

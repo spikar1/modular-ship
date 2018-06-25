@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Player : Entity
 {
@@ -8,60 +7,32 @@ public class Player : Entity
         base.Start();
         transform.parent = directionParent;
     }
-
-    public void Update()
-    {
-        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        leftBumper = Input.GetKey(KeyCode.Q);
-        rightBumper = Input.GetKey(KeyCode.E);
-
-
-        switch (state)
-        {
-            case State.normal:
-                NormalStateUpdate();
-                break;
-            case State.seated:
-                Seated();
-                break;
-            case State.dead:
-                break;
-            default:
-                break;
-        }
-    }
-
-    public override void NormalStateUpdate()
+    
+    protected override void NormalStateUpdate()
     {
         moveInput = Camera.main.transform.TransformDirection(moveInput);
         base.NormalStateUpdate();
-        if (Input.GetButtonDown("Jump")) {
+        if (Input.GetButtonDown("Jump"))
             Interact();
-        }
+
         if (directionParent)
-        {
             dir = directionParent.right * moveInput.x + directionParent.up * moveInput.y;
-        }
         else
-        {
             dir = moveInput;
-        }
+
         dir = moveInput;
-        //Vector2 lookDir;
         Vector2 velocity = new Vector3(dir.x, dir.y) * maxSpeed;
         controller.Move(velocity * Time.deltaTime, collidableMask);
-        //transform.LookAt(lookDir.toVector3() + transform.position, Vector3.back);
     }
 
 
-    public override void Seated() {
-        base.Seated();
-        if (Input.GetButtonDown("Jump")) {
+    protected override void SeatedUpdate()
+    {
+        base.SeatedUpdate();
+        if (Input.GetButtonDown("Jump"))
             Interact();
-        }
-        if (!directionParent) {
-            directionParent = seat.transform;
-        }
-    }
 
+        if (!directionParent)
+            directionParent = seat.transform;
+    }
 }

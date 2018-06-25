@@ -1,17 +1,34 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Wall : MonoBehaviour, IDamagable {
     public int integrity;
+    public WallOrientation orientation;
+
+    [NonSerialized]
+    public Attachment attachedThing;
+    public RoomNode roomNode { get; private set; }
+    
+    //in local space
+    public Vector3 attachPoint { get; private set; }
 
     private int maxIntegrity;
     private Renderer wallRenderer;
 
     private static Material materialTemplate;
     private static readonly Dictionary<int, Material> integrityToRenderer = new Dictionary<int, Material>();
+    
+    
+    public void Initialize(RoomNode roomNode)
+    {
+        this.roomNode = roomNode;
 
-    void Start() {
+        attachPoint = orientation.ToOffset(); 
+        
+        if (name.StartsWith("GameObject"))
+            name = name.Replace("GameObject", "Wall");
+        
         wallRenderer = GetComponent<Renderer>();
         maxIntegrity = integrity;
 
@@ -24,7 +41,9 @@ public class Wall : MonoBehaviour, IDamagable {
         Debug.Log(relativeVelocity.magnitude);
         integrity -= (Mathf.FloorToInt(damage));
         if (integrity <= 0)
-            DestroyWall();
+        {
+            Destroy(gameObject);
+        }
         else
             SetMaterialForDurability();
 
@@ -44,9 +63,5 @@ public class Wall : MonoBehaviour, IDamagable {
         }
 
         wallRenderer.sharedMaterial = mat;
-    }
-
-    void DestroyWall() {
-        Destroy(gameObject);
     }
 }   

@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [CreateAssetMenu]
-public class WallPiece : ScriptableObject {
+public class WallPiece : ScriptableObject
+{
     public GameObject wallBlenderFile;
 
     public List<Mesh> corner, straight, diagonal;
@@ -14,30 +13,11 @@ public class WallPiece : ScriptableObject {
 
     public int durability, integrity;
 
-    /// <summary>
-    /// </summary>
-    /// <param name="shape"></param>
-    /// <param name="index">if index == -1, returns random</param>
-    /// <returns></returns>
-    public Mesh GetMeshFromShape(Shape shape, int index = -1) {
-        int i;
-        switch (shape) {
-            case Shape.Corner:
-                i = index == -1 ? Random.Range(0, corner.Count - 1) : index;
-                return corner[i];
-            case Shape.Straight:
-                i = index == -1 ? Random.Range(0, straight.Count - 1) : index;
-                return straight[i];
-            case Shape.Diagonal:
-                i = index == -1 ? Random.Range(0, diagonal.Count - 1) : index;
-                return diagonal[i];
-            default:
-                throw new System.Exception(shape + "is invalid");
-        }
-    }
-
-    public Mesh GetMeshFromOrientation(WallOrientation wo,bool isDiagonal , int index = -1) {
-        switch (wo) {
+    //if index == -1, returns random
+    public Mesh GetMeshFromOrientation(WallOrientation wo, bool isDiagonal, int index = -1)
+    {
+        switch (wo)
+        {
             case WallOrientation.TopLeft:
             case WallOrientation.TopRight:
             case WallOrientation.BottomLeft:
@@ -56,28 +36,46 @@ public class WallPiece : ScriptableObject {
         }
     }
 
-    public Mesh GetCollisionMesh(Mesh mesh) {
-
-        for (int i = 0; i < cornerCol.Count; i++) {
-            if (cornerCol[i].name.StartsWith(mesh.name))
-                return cornerCol[i];
+    private Mesh GetMeshFromShape(Shape shape, int index = -1)
+    {
+        List<Mesh> meshesToUse;
+        
+        switch (shape)
+        {
+            case Shape.Corner:
+                meshesToUse = corner;
+                break;
+            case Shape.Straight:
+                meshesToUse = straight;
+                break;
+            case Shape.Diagonal:
+                meshesToUse = diagonal;
+                break;
+            default:
+                throw new System.Exception($"shape type {shape} is invalid");
         }
 
-        for (int i = 0; i < straightCol.Count; i++) {
-            if (straightCol[i].name.StartsWith(mesh.name))
-                return straightCol[i];
-        }
+        if (index == -1)
+            index = Random.Range(0, meshesToUse.Count - 1);
 
-        for (int i = 0; i < diagonalCol.Count; i++) {
-            if (diagonalCol[i].name.StartsWith(mesh.name))
-                return diagonalCol[i];
-        }
+        return meshesToUse[index];
+    }
 
+    public Mesh GetCollisionMesh(Mesh mesh)
+    {
+        foreach (var col in cornerCol)
+            if (col.name.StartsWith(mesh.name))
+                return col;
 
+        foreach (var col in straightCol)
+            if (col.name.StartsWith(mesh.name))
+                return col;
 
-        Debug.LogWarning("Can't Find collision mesh for " + mesh.name + " perhaps collision mesh is not named correctly");
+        foreach (var col in diagonalCol)
+            if (col.name.StartsWith(mesh.name))
+                return col;
+
+        Debug.LogError($"Can't Find collision mesh for {mesh.name} perhaps collision mesh is not named correctly");
         return straightCol[0];
     }
 }
-public enum Shape { Corner, Straight, Diagonal };
-

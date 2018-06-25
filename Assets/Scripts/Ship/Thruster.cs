@@ -2,7 +2,7 @@
 using System;
 
 [SelectionBase]
-public class Thruster : MonoBehaviour {
+public class Thruster : MonoBehaviour, IAttachable {
 
     private static readonly Vector2[] directions = {
         Vector2.up,
@@ -28,7 +28,9 @@ public class Thruster : MonoBehaviour {
     private Color color = Color.white;
     private Material material;
 
-    private void Start() {
+    private Ship ship;
+
+    private void Awake() {
         direction = GetThrustDirection();
         fireRenderer.sharedMaterial = material = new Material(fireRenderer.sharedMaterial);
     }
@@ -74,5 +76,20 @@ public class Thruster : MonoBehaviour {
         var from = transform.position;
         var to = transform.position - (Vector3)dir.ToVector2();
         Gizmos.DrawLine(from, to);
+    }
+
+    public void OnAttachedTo(Wall wall)
+    {
+        ship = wall.roomNode.room.ship;
+        ship.RegisterThruster(this);
+    }
+
+    public void OnDetach()
+    {
+        if (ship != null)
+        {
+            ship.DeregisterThruster(this);
+            ship = null;
+        }
     }
 }

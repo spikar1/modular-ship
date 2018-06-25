@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Controller))]
 public class Entity : MonoBehaviour
 {
-    public enum State { normal, seated, dead};
+    public enum State { normal, seated};
     public State state = State.normal;
 
     #region Stats
@@ -12,11 +13,12 @@ public class Entity : MonoBehaviour
     #endregion
 
     public float maxSpeed = 10;
-    public float acceleration = 10;
     public Seat seat;
     public LayerMask interactableMask;
     public LayerMask collidableMask;
     public Transform directionParent;
+
+    private Attachment carriedAttachment;
 
     [HideInInspector]
     public Vector2 dir, moveInput;
@@ -29,8 +31,25 @@ public class Entity : MonoBehaviour
     {
         controller = GetComponent<Controller>();
     }
+    
+    public void Update()
+    {
+        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        leftBumper = Input.GetKey(KeyCode.Q);
+        rightBumper = Input.GetKey(KeyCode.E);
 
-    virtual public void Seated()
+        switch (state)
+        {
+            case State.normal:
+                NormalStateUpdate();
+                break;
+            case State.seated:
+                SeatedUpdate();
+                break;
+        }
+    }
+
+    protected virtual void SeatedUpdate()
     {
         if (!seat)
             Debug.LogError(name + "is trying to act seated when there is no seat registered");
@@ -44,28 +63,38 @@ public class Entity : MonoBehaviour
         seat.inputs.action1Up = Input.GetButtonUp("Fire1");
         seat.inputs.action1 = Input.GetButton("Fire1");
     }
-    public virtual void NormalStateUpdate() {
-    }
 
-    public void AttemptSeat()
+    protected virtual void NormalStateUpdate() {}
+
+    protected void Interact()
     {
-        Collider2D col = Physics2D.OverlapCircle(transform.position, 2, interactableMask);
-        if (col)
-        {
-            seat = col.GetComponent<Seat>();
-        }
-
-        if (!seat)
-            return;
-        seat.entity = this;
-        state = State.seated;
-
-        //controller.rb.isKinematic = true;
-        //controller.col.enabled = false;
-        transform.position = seat.seatPoint;
-        transform.SetParent(seat.transform);
+        if (carriedAttachment != null)
+            CarryingInteract();
+        else
+            NormalInteract();
     }
-    public virtual void Interact()
+
+    private Collider2D[] overlapCircleBuffer = new Collider2D[10];
+    private List<Wall> hitWalls = new List<Wall>();
+    private void CarryingInteract()
+    {
+        int numHits = Physics2D.OverlapCircleNonAlloc(transform.position, 2f, overlapCircleBuffer, -1);
+        hitWalls.Clear();
+        for (int i = 0; i < numHits; i++)
+        {
+            var wall = overlapCircleBuffer[i].GetComponent<Wall>();
+            if (wall != null && wall.attachedThing == null)
+                hitWalls.Add(wall);
+        }
+        
+        if (hitWalls.Count > 0)
+        {
+            if (carriedAttachment.TryAttachToNearest(hitWalls))
+                carriedAttachment = null;
+        }
+    }
+
+    private void NormalInteract()
     {
         Collider2D col = Physics2D.OverlapCircle(transform.position, .4f, interactableMask);
 
@@ -76,12 +105,13 @@ public class Entity : MonoBehaviour
             throw new System.Exception("Only GameObjects with an Interactable() class can have the Interactable mask");
 
         Interactable _inter = col.GetComponent<Interactable>();
-        //print(_inter.transform.name);
         _inter.OnInteract(this);
-        
     }
-    public void SetDirectionalParent()
+
+    public void StartCarrying(Attachment attachment)
     {
-        
+        attachment.transform.parent = transform;
+        attachment.transform.localPosition = Vector2.zero;
+        carriedAttachment = attachment;
     }
 }

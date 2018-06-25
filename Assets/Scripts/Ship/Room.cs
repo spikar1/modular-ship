@@ -1,22 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEngine;
 
 public class Room : MonoBehaviour {
 
-    public List<RoomNode> roomNodes = new List<RoomNode>();
-
     public int integrity, durability;
+    private List<RoomNode> nodes;
+    public IReadOnlyList<RoomNode> roomNodes;
+    public Ship ship { get; private set; }
 
-    private void Start() {
+    public void Initialize(Ship ship)
+    {
+        this.ship = ship;
+        nodes = GetComponentsInChildren<RoomNode>().ToList();
+        foreach (var node in nodes)
+        {
+            node.Initialize(this);
+        }
+        roomNodes = new ReadOnlyCollection<RoomNode>(nodes);
         EvaluateHealth();
     }
 
-    void EvaluateHealth() {
-        integrity = 0;
-        durability = 0;
-        for (int i = 0; i < roomNodes.Count; i++) {
-            Wall wall = roomNodes[i].GetComponent<Wall>();
+    private void EvaluateHealth()
+    {
+        foreach (var node in nodes)
+        {
+            Wall wall = node.GetComponent<Wall>();
             if (!wall)
                 continue;
             integrity += wall.integrity;

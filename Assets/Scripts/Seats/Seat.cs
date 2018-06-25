@@ -6,15 +6,14 @@ public sealed class Seat : Interactable
     public Transform ejectTransform;
     public Inputs inputs;
 
-    public Vector3 seatPoint, ejectPoint;
+    public Vector3 ejectPoint;
 
-    bool entityFirstFrame = true; 
+    private bool entityFirstFrame = true; 
 
     public GameObject[] behaviours;
     
     public void Start()
     {
-        seatPoint = transform.position;
         ejectPoint = transform.position + Vector3.up;
         if (ejectTransform)
             ejectPoint = ejectTransform.position;
@@ -22,7 +21,6 @@ public sealed class Seat : Interactable
 
     public void Update()
     {
-        seatPoint = transform.position;
         ejectPoint = ejectTransform.position;
         if (entity)
         {
@@ -37,9 +35,8 @@ public sealed class Seat : Interactable
             entityFirstFrame = true;
     }
 
-    public void OnEject(Entity _entity)
+    private void OnEject(Entity _entity)
     {
-        //print(entity.name + " got up from " + name);
         for (int i = 0; i < behaviours.Length; i++) {
             IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
             if (behaviour == null) {
@@ -48,9 +45,8 @@ public sealed class Seat : Interactable
         }
     }
 
-    public void OnSeated(Entity _entity)
+    private void OnSeated(Entity _entity)
     {
-        //print(entity.name + " sat down on " + name);
         for (int i = 0; i < behaviours.Length; i++) {
             IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
             if (behaviour == null) {
@@ -59,64 +55,42 @@ public sealed class Seat : Interactable
         }
     }
 
-    public void WhileSeated(Entity _entity)
+    private void WhileSeated(Entity _entity)
     {
         for (int i = 0; i < behaviours.Length; i++) {
             IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
             if (behaviour == null) {
                 Debug.LogError("GameObject should contain IBehaviour!");
             }
-            behaviour.ReceiveInput(
-                inputs.action1Down,
-                inputs.action1Up,
-                inputs.axis);
+            else
+            {
+                behaviour.ReceiveInput(inputs);
+            }
         }
     }
 
-    public override void OnInteract(Entity _entity)
+    public override void OnInteract(Entity entity)
     {
-        base.OnInteract(_entity);
+        base.OnInteract(entity);
         
-        switch (_entity.state)
+        switch (entity.state)
         {
             
             case Entity.State.normal:
-                entity = _entity;
-                entity.seat = this;
-                entity.transform.position = transform.position;
-                entity.transform.parent = transform;
-                entity.state = Entity.State.seated;
+                this.entity = entity;
+                this.entity.seat = this;
+                this.entity.transform.position = transform.position;
+                this.entity.transform.parent = transform;
+                this.entity.state = Entity.State.seated;
                 break;
             case Entity.State.seated:
-                OnEject(_entity);
-                entity = null;
-                _entity.seat = null;
-                _entity.transform.position = ejectPoint;
-                _entity.transform.parent = _entity.directionParent;
-                _entity.state = Entity.State.normal;
-                break;
-            case Entity.State.dead:
-                break;
-            default:
+                OnEject(entity);
+                this.entity = null;
+                entity.seat = null;
+                entity.transform.position = ejectPoint;
+                entity.transform.parent = entity.directionParent;
+                entity.state = Entity.State.normal;
                 break;
         }
-    }
-
-    public void ResetInputs()
-    {
-        inputs.axis = Vector2.zero;
-        inputs.strafe = 0;
-        inputs.action1Down = false;
-        inputs.action1Up = false;
-        inputs.action1 = false;
-    }
-
-    public struct Inputs
-    {
-        public Vector2 axis;
-        public float strafe;
-        public bool action1Down;
-        public bool action1Up;
-        public bool action1;
     }
 }
