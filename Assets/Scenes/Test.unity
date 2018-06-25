@@ -277,7 +277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!1 &57951062
 GameObject:
@@ -444,7 +443,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1274621453740404, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_Name
@@ -625,7 +624,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!1 &129711954
 GameObject:
@@ -784,7 +782,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1274621453740404, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_Name
@@ -900,13 +898,13 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!4 &266667320
 Transform:
@@ -1146,7 +1144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!1 &361397201
 GameObject:
@@ -1194,7 +1191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!60 &361397204
 PolygonCollider2D:
@@ -1440,7 +1436,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1274621453740404, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_Name
@@ -1629,7 +1625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!1 &488591116
 GameObject:
@@ -1761,7 +1756,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!23 &488591124
 MeshRenderer:
@@ -1978,7 +1972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!114 &499973308
 MonoBehaviour:
@@ -2131,7 +2124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!23 &562172210
 MeshRenderer:
@@ -2264,7 +2256,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.38
+      value: -4.62
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2288,7 +2280,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1274621453740404, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_Name
@@ -2486,7 +2478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!4 &686148417 stripped
 Transform:
@@ -2634,7 +2625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!60 &891161496
 PolygonCollider2D:
@@ -2805,7 +2795,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!60 &953208108
 PolygonCollider2D:
@@ -3104,7 +3093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!23 &975389517
 MeshRenderer:
@@ -3230,7 +3218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!60 &1019052598
 PolygonCollider2D:
@@ -3476,7 +3463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!23 &1136258082
 MeshRenderer:
@@ -4115,7 +4101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!23 &1303613682
 MeshRenderer:
@@ -4565,7 +4550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!60 &1466149892
 PolygonCollider2D:
@@ -4890,7 +4874,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1274621453740404, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_Name
@@ -4957,7 +4941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!60 &1527764564
 PolygonCollider2D:
@@ -5575,7 +5558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!23 &1807863218
 MeshRenderer:
@@ -5796,7 +5778,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!1 &1864667259
 GameObject:
@@ -5970,7 +5951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!1 &1899945699
 GameObject:
@@ -6140,7 +6120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 150
   integrity: 60
 --- !u!1 &1938922834
 GameObject:
@@ -6188,7 +6167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!60 &1938922837
 PolygonCollider2D:
@@ -6454,6 +6432,46 @@ Transform:
   m_PrefabParentObject: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469,
     type: 2}
   m_PrefabInternal: {fileID: 173169120}
+--- !u!1 &1991312948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1991312950}
+  - component: {fileID: 1991312949}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1991312949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1991312948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e39b17a0107e94188b0e4bcd36fc42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1991312950
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1991312948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.87, y: 0.81, z: -9.01}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004523173
 GameObject:
   m_ObjectHideFlags: 0
@@ -6576,7 +6594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!23 &2004523181
 MeshRenderer:
@@ -6780,7 +6797,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.38
+      value: -4.62
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6804,7 +6821,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1274621453740404, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_Name
@@ -6876,7 +6893,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  durability: 50
   integrity: 12
 --- !u!60 &2143982751
 PolygonCollider2D:

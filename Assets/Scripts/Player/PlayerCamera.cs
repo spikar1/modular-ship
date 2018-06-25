@@ -5,28 +5,29 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour {
 
 	private void Update () {
-		RotateCamera();
-		ZoomCamera();
+		var shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+		RotateCamera(shiftHeld);
+		ZoomCamera(shiftHeld);
 	}
 
-	private void RotateCamera() {
+	private void RotateCamera(bool shiftHeld) {
 		float rotation = 0f;
 		if (Input.GetMouseButton(2))
 			rotation -= Input.GetAxis("Mouse X") * 3;
 		if (Input.GetKeyDown(KeyCode.Q))
-			rotation -= 5;
+			rotation -= shiftHeld ? 30f : 5f;
 		if (Input.GetKeyDown(KeyCode.E))
-			rotation += 5;
+			rotation += shiftHeld ? 30f : 5f;
 		
 		transform.Rotate(transform.forward, rotation);
 	}
 	
-	private void ZoomCamera() {
+	private void ZoomCamera(bool shiftHeld) {
 		var zoom = Input.mouseScrollDelta.y;
 		if (Input.GetKeyDown(KeyCode.PageUp))
-			zoom += 1f;
+			zoom += shiftHeld ? 5f : 1f;
 		if (Input.GetKeyDown(KeyCode.PageDown))
-			zoom -= 1f;
+			zoom -= shiftHeld ? 5f : 1f;
 
 		transform.GetChild(0).position += transform.GetChild(0).forward * zoom;
 	}

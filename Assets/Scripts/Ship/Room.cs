@@ -20,7 +20,7 @@ public class Room : MonoBehaviour {
             if (!wall)
                 continue;
             integrity += wall.integrity;
-            durability += wall.durability;
+            //durability += wall.durability;
         }
     }
 }

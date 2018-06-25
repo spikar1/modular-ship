@@ -184,7 +184,7 @@ public class RoomNodeEditor : Editor {
         Wall w = go.GetComponent<Wall>();
         RoomNode rn = go.GetComponent<RoomNode>();
         if (!EditorApplication.isPlaying) {
-            w.durability = rn.wallPiece.durability;
+            //w.durability = rn.wallPiece.durability;
             w.integrity = rn.wallPiece.integrity;
         }
 
