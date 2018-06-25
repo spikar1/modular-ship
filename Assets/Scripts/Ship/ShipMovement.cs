@@ -19,6 +19,25 @@ public class ShipMovement : MonoBehaviour, IInputReciever {
 
         thrustersToFire = new List<Thruster>();
         rb = GetComponent<Rigidbody2D>();
+
+        CreateDebugMarker(Color.black, rb.centerOfMass);
+        rb.centerOfMass = rb.centerOfMass.RoundedToInt();
+        CreateDebugMarker(Color.red, rb.centerOfMass);
+    }
+
+    private void CreateDebugMarker(Color color, Vector2 rbCenterOfMass)
+    {
+        var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        Destroy(marker.GetComponent<Collider>());
+        var mRend = marker.GetComponent<Renderer>();
+        Material mMat;
+        mRend.sharedMaterial = mMat = new Material(mRend.sharedMaterial);
+
+        mMat.color = color;
+        marker.transform.parent = transform;
+        marker.transform.localScale = .2f * Vector3.one;
+
+        marker.transform.localPosition = rbCenterOfMass;
     }
 
     public void ReceiveInput(bool action1Down, bool action1Up, Vector2 movement) {
@@ -37,8 +56,9 @@ public class ShipMovement : MonoBehaviour, IInputReciever {
             thrustersToFire.AddRange(downThrusters);
 
         foreach (var thruster in thrustersToFire) {
-            Vector2 thrust = transform.rotation * thruster.Thrust();
-            rb.AddForceAtPosition(thrust, thruster.transform.position);
+            var thrust = transform.rotation * thruster.Thrust();
+            var thrustPos = ((Vector2) thruster.transform.position).RoundedToInt();
+            rb.AddForceAtPosition(thrust, thrustPos);
         }
     }
 }

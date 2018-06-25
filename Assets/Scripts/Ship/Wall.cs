@@ -20,7 +20,8 @@ public class Wall : MonoBehaviour, IDamagable {
         SetMaterialForDurability();
     }
 
-    public void Damage(Vector3 direction, float damage) {
+    public void Damage(Vector2 relativeVelocity, float damage) {
+        Debug.Log(relativeVelocity.magnitude);
         integrity -= (Mathf.FloorToInt(damage));
         if (integrity <= 0)
             DestroyWall();

@@ -3,5 +3,5 @@ using System.Collections.Generic;
 using UnityEngine;
 
 interface IDamagable {
-    void Damage(Vector3 direction, float damage);
+    void Damage(Vector2 relativeVelocity, float damage);
 }
