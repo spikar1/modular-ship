@@ -9,6 +9,9 @@ public class NetworkHealth : NetworkBehaviour {
     [SyncVar(hook = "OnChangeHealth")]
     public int currentHealth = maxHealth;
 
+    Color color;
+    bool isBeingShot = false;
+
     public void TakeDamage(int amount) {
         if (!isServer)
             return;
@@ -20,7 +23,20 @@ public class NetworkHealth : NetworkBehaviour {
     }
 
     void OnChangeHealth(int health) {
-        GetComponent<MeshRenderer>().material.color = Color.red;
-        
+        print("I'm hit!");
+        if (!isBeingShot) {
+            color = GetComponent<MeshRenderer>().material.color;
+            GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+        else
+            CancelInvoke("ResetColor");
+
+        Invoke("ResetColor", .2f);
+
+    }
+
+    void ResetColor() {
+        GetComponent<MeshRenderer>().material.color = color;
+        isBeingShot = false;
     }
 }
