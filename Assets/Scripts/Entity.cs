@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 [RequireComponent(typeof(Controller))]
-public class Entity : MonoBehaviour
+public class Entity : NetworkBehaviour
 {
     public enum State { normal, seated, dead};
     public State state = State.normal;
@@ -65,8 +66,12 @@ public class Entity : MonoBehaviour
         transform.position = seat.seatPoint;
         transform.SetParent(seat.transform);
     }
-    public virtual void Interact()
+
+    [Command]
+    public virtual void CmdInteract()
     {
+
+        Debug.Log(name + " triedInteracting");
         Collider2D col = Physics2D.OverlapCircle(transform.position, .4f, interactableMask);
 
         if (!col)

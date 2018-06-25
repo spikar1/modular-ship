@@ -11,6 +11,8 @@ public class Player : Entity
 
     public void Update()
     {
+        if (!isLocalPlayer)
+            return;
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         leftBumper = Input.GetKey(KeyCode.Q);
         rightBumper = Input.GetKey(KeyCode.E);
@@ -36,7 +38,8 @@ public class Player : Entity
         moveInput = Camera.main.transform.TransformDirection(moveInput);
         base.NormalStateUpdate();
         if (Input.GetButtonDown("Jump")) {
-            Interact();
+            Debug.Log("tries interacting");
+            CmdInteract();
         }
         if (directionParent)
         {
@@ -57,7 +60,7 @@ public class Player : Entity
     public override void Seated() {
         base.Seated();
         if (Input.GetButtonDown("Jump")) {
-            Interact();
+            CmdInteract();
         }
         if (!directionParent) {
             directionParent = seat.transform;

@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
 
-
-public class Controller : MonoBehaviour {
+public class Controller : NetworkBehaviour {
     
 
     Vector2 lastPos;
