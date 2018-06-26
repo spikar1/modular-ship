@@ -24,12 +24,17 @@ public class Wall : MonoBehaviour, IDamagable {
     {
         this.roomNode = roomNode;
 
-        attachPoint = orientation.ToOffset(); 
+        attachPoint = orientation.ToOffset() * .5f; 
         
         if (name.StartsWith("GameObject"))
             name = name.Replace("GameObject", "Wall");
         
         wallRenderer = GetComponent<Renderer>();
+        if (wallRenderer == null)
+        {
+            Debug.LogError($"Missing wall renderer on {name}!", this);
+            return;
+        }
         maxIntegrity = integrity;
 
         if (materialTemplate == null)
@@ -63,5 +68,11 @@ public class Wall : MonoBehaviour, IDamagable {
         }
 
         wallRenderer.sharedMaterial = mat;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(transform.position, transform.position + (Vector3) orientation.ToOffset());
     }
 }   
