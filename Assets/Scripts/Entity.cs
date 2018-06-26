@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour
         controller = GetComponent<Controller>();
     }
     
-    public virtual void Update()
+    public virtual void LateUpdate()
     {
         switch (state)
         {
@@ -79,8 +79,9 @@ public class Entity : MonoBehaviour
         else
             dir = moveInput;
 
-        dir = moveInput;
+        Debug.DrawRay((Vector2)transform.position, dir * 3, Color.blue);
         Vector2 velocity = new Vector3(dir.x, dir.y) * maxSpeed;
+        Debug.DrawRay((Vector2)transform.position, velocity * 2, Color.red);
         controller.Move(velocity * Time.deltaTime, collidableMask);
     }
 

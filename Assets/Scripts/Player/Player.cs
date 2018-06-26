@@ -43,14 +43,14 @@ public class Player : Entity
         }
     }
 
-    public override void Update() {
-        base.Update();
+    public override void LateUpdate() {
+        base.LateUpdate();
         GetPlayerInput();
     }
 
     protected override void NormalStateUpdate()
     {
-        moveInput = transform.GetChild(0).TransformDirection(moveInput);
+
         base.NormalStateUpdate();
     }
 

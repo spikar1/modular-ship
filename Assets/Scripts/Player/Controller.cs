@@ -13,16 +13,14 @@ public class Controller : MonoBehaviour {
 
     }
     public void Move(Vector2 vel, LayerMask collidableMask) {
-        /*rb.drag = 0;
-        if (vel != Vector2.zero)
-            rb.AddRelativeForce(vel, ForceMode2D.Impulse);
-        else
-            rb.drag = 100;*/
-
-        lastPos = transform.localPosition;
-        
-        if (!Physics2D.OverlapCircle((Vector2)transform.localPosition + vel, .1f, collidableMask)){
-            transform.Translate(vel);
+        lastPos = transform.position;
+        Debug.DrawLine((Vector2)transform.position, (Vector2)transform.position + vel, Color.yellow,.01f);
+        if (!Physics2D.OverlapCircle((Vector2)transform.position + vel, .2f, collidableMask)){
+            transform.position += (Vector3)vel;
+        }
+        if(Physics2D.OverlapCircle(transform.position, .2f, collidableMask)) {
+            transform.position = lastPos;
         }
     }
+    
 }

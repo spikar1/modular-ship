@@ -222,7 +222,14 @@ MonoBehaviour:
   moveInput: {x: 0, y: 0}
   leftBumper: 0
   rightBumper: 0
+  interactButton: 0
+  interactButtonDown: 0
+  interactButtonUp: 0
+  action: 0
+  actionDown: 0
+  actionUp: 0
   controller: {fileID: 0}
+  player: 0
 --- !u!114 &114741528369886338
 MonoBehaviour:
   m_ObjectHideFlags: 1
