@@ -44,6 +44,8 @@ public class Wall : MonoBehaviour, IDamagable {
 
     public void Damage(Vector2 relativeVelocity, float damage) {
         Debug.Log(relativeVelocity.magnitude);
+        DamageText txt = gameObject.AddComponent<DamageText>();
+        txt.ShowDamageText(damage);
         integrity -= (Mathf.FloorToInt(damage));
         if (integrity <= 0)
         {

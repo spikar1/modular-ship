@@ -16,9 +16,15 @@ public class Bomb : MonoBehaviour, IDamagable {
     void Explode() {
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, radius);
         List<Rigidbody2D> rbs = new List<Rigidbody2D>();
+        List<GameObject> dams = new List<GameObject>();
         for (int i = 0; i < cols.Length; i++) {
+            if (cols[i].gameObject == gameObject)
+                continue;
             Rigidbody2D rb = cols[i].GetComponentInParent<Rigidbody2D>();
-            print(cols[i].name);
+            IDamagable dam = cols[i].GetComponent<IDamagable>();
+            if (dam != null) {
+                dams.Add(cols[i].gameObject);
+            }
             if (rb && !rbs.Contains(rb)) {
                 rbs.Add(rb);
             }
@@ -27,10 +33,12 @@ public class Bomb : MonoBehaviour, IDamagable {
 
         for (int i = 0; i < rbs.Count; i++) {
             rbs[i].AddExplosionForce(strength, transform.position, radius);
-            IDamagable dam = rbs[i].GetComponent<IDamagable>();
-            if (dam != null)
-                dam.Damage(Vector2.zero, Vector2.Distance(transform.position, rbs[i].transform.position) * strength);
-            print(rbs[i].name);
+        }
+
+        for (int i = dams.Count - 1; i >= 0; i--) {
+            float damage = Mathf.InverseLerp(radius, 0, Vector2.Distance(transform.position, dams[i].transform.position) * strength);
+            print(Vector2.Distance(transform.position, dams[i].transform.position));
+            dams[i].GetComponent<IDamagable>().Damage(Vector2.zero, damage);
         }
         
         Destroy(gameObject);

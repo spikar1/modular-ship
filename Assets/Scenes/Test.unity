@@ -6301,8 +6301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  radius: 20
-  strength: 1
+  radius: 10
+  strength: 30
 --- !u!4 &2143322062 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469,

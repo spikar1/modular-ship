@@ -11,7 +11,6 @@ public class PlayerCamera : MonoBehaviour {
     }
 
     private void Update () {
-        print(Input.GetAxisRaw("RightStick X"));
         switch (player) {
             case 0:
                 RotateCamera(Input.GetAxisRaw("Mouse X"), Input.GetMouseButton(2));
