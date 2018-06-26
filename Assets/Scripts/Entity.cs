@@ -25,6 +25,10 @@ public class Entity : MonoBehaviour
     [HideInInspector]
     public bool leftBumper, rightBumper;
     [HideInInspector]
+    public bool interactButton, interactButtonDown, interactButtonUp;
+    [HideInInspector]
+    public bool action, actionDown, actionUp;
+    [HideInInspector]
     public Controller controller;
 
     public virtual void Start()
@@ -32,12 +36,8 @@ public class Entity : MonoBehaviour
         controller = GetComponent<Controller>();
     }
     
-    public void Update()
+    public virtual void Update()
     {
-        moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        leftBumper = Input.GetKey(KeyCode.Q);
-        rightBumper = Input.GetKey(KeyCode.E);
-
         switch (state)
         {
             case State.normal:
@@ -59,12 +59,30 @@ public class Entity : MonoBehaviour
         _strafe = leftBumper ? _strafe - 1 : _strafe;
         _strafe = rightBumper ? _strafe + 1 : _strafe;
         seat.inputs.strafe = _strafe;
-        seat.inputs.action1Down = Input.GetButtonDown("Fire1");
-        seat.inputs.action1Up = Input.GetButtonUp("Fire1");
-        seat.inputs.action1 = Input.GetButton("Fire1");
+        seat.inputs.action1Down = actionDown;
+        seat.inputs.action1Up = actionUp;
+        seat.inputs.action1 = action;
+
+        if (interactButtonDown)
+            Interact();
+
+        if (!directionParent)
+            directionParent = seat.transform;
     }
 
-    protected virtual void NormalStateUpdate() {}
+    protected virtual void NormalStateUpdate() {
+        if (interactButtonDown)
+            Interact();
+
+        if (directionParent)
+            dir = directionParent.right * moveInput.x + directionParent.up * moveInput.y;
+        else
+            dir = moveInput;
+
+        dir = moveInput;
+        Vector2 velocity = new Vector3(dir.x, dir.y) * maxSpeed;
+        controller.Move(velocity * Time.deltaTime, collidableMask);
+    }
 
     protected void Interact()
     {
