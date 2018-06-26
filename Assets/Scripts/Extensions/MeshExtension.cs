@@ -21,11 +21,36 @@ public static class MeshExtension
         };
     }
 
+    public static void OverwriteWith(this Mesh mesh, Mesh otherMesh)
+    {
+        mesh.vertices = otherMesh.vertices;
+        mesh.triangles = otherMesh.triangles;
+        mesh.bindposes = otherMesh.bindposes;
+        mesh.boneWeights = otherMesh.boneWeights;
+        mesh.colors = otherMesh.colors;
+        mesh.normals = otherMesh.normals;
+        mesh.tangents = otherMesh.tangents;
+        mesh.uv = otherMesh.uv;
+        mesh.uv2 = otherMesh.uv2;
+        mesh.uv3 = otherMesh.uv3;
+        mesh.uv4 = otherMesh.uv;
+#if UNITY_EDITOR
+        if (UnityEditor.EditorApplication.isPlaying)
+        {
+            if (!string.IsNullOrEmpty(UnityEditor.AssetDatabase.GetAssetPath(mesh)))
+            {
+                UnityEditor.EditorUtility.SetDirty(mesh);
+            }
+        }
+#endif
+    }
+
     public static void RotateVertices(this Mesh mesh, Quaternion rotation)
     {
         var vertices = mesh.vertices;
         for (int i = 0; i < vertices.Length; i++)
             vertices[i] = rotation * vertices[i];
         mesh.vertices = vertices;
+        mesh.RecalculateNormals();
     }
 }
