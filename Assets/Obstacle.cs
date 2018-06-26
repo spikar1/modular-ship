@@ -2,7 +2,8 @@
 
 public class Obstacle : MonoBehaviour, IDamagable {
 
-    private int hp;
+    
+    public int hp;
     
     private void OnCollisionEnter2D(Collision2D collision) {
         var damageable = collision.collider.GetComponent<IDamagable>();
@@ -12,6 +13,8 @@ public class Obstacle : MonoBehaviour, IDamagable {
     }
 
     public void Damage(Vector2 relativeVelocity, float damage) {
-        
+        hp -= (int)damage;
+        if (hp <= 0)
+            Destroy(gameObject);
     }
 }

@@ -13,9 +13,10 @@ public class RandomObstacles : MonoBehaviour {
             bounciness = 1f
         };
 
-        template.AddComponent<Obstacle>();
+        var obstacle = template.AddComponent<Obstacle>();
         var rb = template.AddComponent<Rigidbody2D>();
         rb.drag = .1f;
+        obstacle.hp = 10;
         
 
         for (int i = 0; i < 1000; i++) {
