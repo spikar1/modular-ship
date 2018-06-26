@@ -31,7 +31,6 @@ public class Thruster : MonoBehaviour, IAttachable {
     private Ship ship;
 
     private void Awake() {
-        direction = GetThrustDirection();
         fireRenderer.sharedMaterial = material = new Material(fireRenderer.sharedMaterial);
     }
 
@@ -80,6 +79,7 @@ public class Thruster : MonoBehaviour, IAttachable {
 
     public void OnAttachedTo(Wall wall)
     {
+        direction = GetThrustDirection();
         ship = wall.roomNode.room.ship;
         ship.RegisterThruster(this);
     }

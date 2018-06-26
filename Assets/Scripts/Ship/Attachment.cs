@@ -60,6 +60,7 @@ public class Attachment : MonoBehaviour
         attachedTo = closest;
         transform.parent = closest.transform;
         transform.localPosition = closest.attachPoint;
+        transform.localRotation = closest.orientation.ToLookRotation();
         foreach (var attachable in attachables)
             attachable.OnAttachedTo(closest);
         return true; 

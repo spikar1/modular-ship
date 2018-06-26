@@ -15,24 +15,28 @@ public enum WallOrientation
 
 public static class WallOrientationExtension
 {
-    public static Quaternion ToRotation(this WallOrientation wallOrientation)
+    public static Quaternion ToLookRotation(this WallOrientation wallOrientation)
     {
         switch (wallOrientation)
         {
-            case WallOrientation.TopLeft:
-            case WallOrientation.Top:
-                return Quaternion.Euler(0, 0, 0);
-            case WallOrientation.TopRight:
-            case WallOrientation.Right:
-                return Quaternion.Euler(0, 0, -90);
-            case WallOrientation.BottomRight:
             case WallOrientation.Bottom:
-                return Quaternion.Euler(0, 0, 180);
-            case WallOrientation.BottomLeft:
-            case WallOrientation.Left:
+                return Quaternion.Euler(0, 0, 0);
+            case WallOrientation.BottomRight:
+                return Quaternion.Euler(0, 0, 45);
+            case WallOrientation.Right:
                 return Quaternion.Euler(0, 0, 90);
+            case WallOrientation.TopRight:
+                return Quaternion.Euler(0, 0, 135);
+            case WallOrientation.Top:
+                return Quaternion.Euler(0, 0, 180);
+            case WallOrientation.TopLeft:
+                return Quaternion.Euler(0, 0, 225);
+            case WallOrientation.Left:
+                return Quaternion.Euler(0, 0, 270);
+            case WallOrientation.BottomLeft:
+                return Quaternion.Euler(0, 0, 315);
             default:
-                throw new System.Exception($"{wallOrientation} is not valid");
+                throw new Exception($"{wallOrientation} is not valid");
         }
     }
 
