@@ -43,21 +43,8 @@ public class Player : Entity
         }
     }
 
-    public override void LateUpdate() {
-        base.LateUpdate();
+    public override void Update() {
         GetPlayerInput();
-    }
-
-    protected override void NormalStateUpdate()
-    {
-
-        base.NormalStateUpdate();
-    }
-
-
-    protected override void SeatedUpdate()
-    {
-        base.SeatedUpdate();
-        
+        base.Update();
     }
 }

@@ -22,10 +22,10 @@ public class ThrusterEditor : Editor {
             var newThrustPos = thruster.transform.localPosition;
 
             var thrustDir = thruster.GetThrustDirection();
-            if (thrustDir == Direction.Up || thrustDir == Direction.Down) {
+            if (thrustDir == Direction.N || thrustDir == Direction.S) {
                 newThrustPos.x = center.x;
             }
-            else {
+            else if(thrustDir == Direction.E || thrustDir == Direction.W) {
                 newThrustPos.y = center.y;
             }
 

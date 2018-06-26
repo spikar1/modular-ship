@@ -15,7 +15,7 @@ public class Attachment : MonoBehaviour
     //Called by UnityEvent
     public void TryPickUp(Entity picker)
     {
-        if (IsCarried)
+        if (IsCarried || picker.state != Entity.State.normal)
             return;
 
         picker.StartCarrying(this);

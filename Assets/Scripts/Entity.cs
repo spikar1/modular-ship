@@ -36,7 +36,7 @@ public class Entity : MonoBehaviour
         controller = GetComponent<Controller>();
     }
     
-    public virtual void LateUpdate()
+    public virtual void Update()
     {
         switch (state)
         {
