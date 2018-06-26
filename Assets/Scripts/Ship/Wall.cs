@@ -24,8 +24,29 @@ public class Wall : MonoBehaviour, IDamagable {
     {
         this.roomNode = roomNode;
 
-        attachPoint = orientation.ToOffset() * .5f; 
-        
+        var collider = GetComponent<Collider2D>();
+        if (!collider)
+        {
+            Debug.LogWarning($"Wall {name} doesn\'t have a collider!", this);
+            attachPoint = orientation.ToOffset() * .5f;
+        }
+        else
+        {
+            RaycastHit2D hit;
+            var myPos = (Vector2) transform.position;
+            var rayDir = -orientation.ToOffset();
+            var from = myPos - (rayDir * 5f);
+            if (collider.Raycast(from, rayDir, out hit, 10f))
+            {
+                attachPoint = transform.InverseTransformPoint(hit.point);
+            }
+            else
+            {
+                Debug.LogError($"{name} can't hit self with a raycast! Casting from {from}, in direction {rayDir}", this);
+                attachPoint = orientation.ToOffset() * .5f;
+            }
+        }
+
         if (name.StartsWith("GameObject"))
             name = name.Replace("GameObject", "Wall");
         
