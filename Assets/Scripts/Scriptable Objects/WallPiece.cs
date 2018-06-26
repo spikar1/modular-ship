@@ -114,7 +114,6 @@ public class WallPiece : ScriptableObject
         if (index == -1)
             index = Random.Range(0, meshList.Count);
 
-        Debug.Log(orientation + "/" + meshList[index].name);
         return meshList[index];
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Attachment : MonoBehaviour
 {
-    private bool isCarried;
+    private bool IsCarried => attachedTo == null;
     private IAttachable[] attachables;
     private Wall attachedTo;
 
@@ -16,11 +16,10 @@ public class Attachment : MonoBehaviour
     //Called by UnityEvent
     public void TryPickUp(Entity picker)
     {
-        if (isCarried)
+        if (IsCarried)
             return;
 
         picker.StartCarrying(this);
-        isCarried = true;
         attachedTo.attachedThing = null;
         foreach (var attachable in attachables)
             attachable.OnDetach();

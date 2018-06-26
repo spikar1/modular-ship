@@ -57,8 +57,11 @@ public class RoomNodeEditor : Editor
             Undo.RecordObjects(allRooms, "Refresh all rooms");
             foreach (var room in allRooms)
             {
-                SetMesh(room, room.wallOrientation, room.meshIndex);
-                room.UpdateCollisionMesh();
+                if (room.GetComponent<MeshFilter>()) //This is funky. @TODO: add "None" wall orientation. Rename wall kind? 
+                {
+                    SetMesh(room, room.wallOrientation, room.meshIndex);
+                    room.UpdateCollisionMesh();
+                }
             }
         } 
     }
