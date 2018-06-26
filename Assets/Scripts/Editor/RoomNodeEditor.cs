@@ -10,7 +10,7 @@ public class RoomNodeEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        bool dirtyAllRooms = false;
+        bool roomsUpdated = false;
         RoomNode[] roomNodes = new RoomNode[targets.Length];
         for (int i = 0; i < targets.Length; i++)
             roomNodes[i] = (RoomNode) targets[i];
@@ -18,14 +18,7 @@ public class RoomNodeEditor : Editor
         bool[] diagonalLastValue = roomNodes.Select(rn => rn.isDiagonal).ToArray();
         DrawDefaultInspector();
 
-        if (GUILayout.Button("UpdateCollision"))
-        {
-            Undo.RecordObjects(targets, "Updating collision meshes");
-            foreach (var rn in roomNodes)
-                rn.UpdateCollisionMesh();
-        }
-
-        DrawSelectMeshPopup(roomNodes, ref dirtyAllRooms);
+        DrawSelectMeshPopup(roomNodes, ref roomsUpdated);
 
         for (var i = 0; i < roomNodes.Length; i++)
         {
@@ -34,14 +27,21 @@ public class RoomNodeEditor : Editor
             {
                 rn.meshIndex = 0;
                 SetMesh(rn, rn.wallOrientation);
-                dirtyAllRooms = true;
+                roomsUpdated = true;
             }
         }
 
         Undo.RecordObjects(targets, "Orientation buttons");
-        OrientationButtons(roomNodes);
+        OrientationButtons(roomNodes, ref roomsUpdated);
 
-        if (dirtyAllRooms)
+        if (GUILayout.Button("UpdateCollision") || roomsUpdated)
+        {
+            Undo.RecordObjects(targets, "Updating collision meshes");
+            foreach (var rn in roomNodes)
+                rn.UpdateCollisionMesh();
+        }
+
+        if (roomsUpdated)
         {
             foreach (var roomNode in roomNodes)
             {
@@ -49,15 +49,27 @@ public class RoomNodeEditor : Editor
                 EditorSceneManager.MarkSceneDirty(roomNode.gameObject.scene);
             }
         }
+        
+        EditorGUILayout.Space();
+        if (GUILayout.Button("Refresh all rooms"))
+        {
+            var allRooms = FindObjectsOfType<RoomNode>();
+            Undo.RecordObjects(allRooms, "Refresh all rooms");
+            foreach (var room in allRooms)
+            {
+                SetMesh(room, room.wallOrientation, room.meshIndex);
+                room.UpdateCollisionMesh();
+            }
+        } 
     }
 
-    private void DrawSelectMeshPopup(RoomNode[] roomNodes, ref bool dirtyAllRooms)
+    private void DrawSelectMeshPopup(RoomNode[] roomNodes, ref bool roomsUpdated)
     {
         var firstRoomNode = roomNodes[0];
         var firstMeshFilter = firstRoomNode.GetComponent<MeshFilter>();
-        var showMeshPopup = roomNodes.Length == 1 && firstMeshFilter;
+        var showMeshPopup = roomNodes.Length == 1 && firstMeshFilter && firstMeshFilter.sharedMesh;
 
-        if (!showMeshPopup && firstMeshFilter)
+        if (!showMeshPopup && firstMeshFilter && firstMeshFilter.sharedMesh)
             showMeshPopup = roomNodes.All(rn =>
             {
                 var mf = rn.GetComponent<MeshFilter>();
@@ -91,7 +103,7 @@ public class RoomNodeEditor : Editor
 
                 if (oldMi != newMI)
                 {
-                    dirtyAllRooms = true;
+                    roomsUpdated = true;
                     foreach (RoomNode rn in roomNodes)
                     {
                         rn.meshIndex = newMI;
@@ -111,7 +123,7 @@ public class RoomNodeEditor : Editor
         return meshListStrings;
     }
 
-    private void OrientationButtons(RoomNode[] roomNodes)
+    private void OrientationButtons(RoomNode[] roomNodes, ref bool roomsUpdated)
     {
         float buttonWidth = (Screen.width / 3) - 20;
         GUILayoutOption GUIbuttonWidth = GUILayout.Width(buttonWidth);
@@ -121,16 +133,19 @@ public class RoomNodeEditor : Editor
             if (GUILayout.Button("Top Left", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad7)
             {
                 ChangeWallOrientation(WallOrientation.TopLeft, roomNodes);
+                roomsUpdated = true;
             }
 
             if (GUILayout.Button("Top", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad8)
             {
                 ChangeWallOrientation(WallOrientation.Top, roomNodes);
+                roomsUpdated = true;
             }
 
             if (GUILayout.Button("Top Right", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad9)
             {
                 ChangeWallOrientation(WallOrientation.TopRight, roomNodes);
+                roomsUpdated = true;
             }
         }
         GUILayout.EndHorizontal();
@@ -139,6 +154,7 @@ public class RoomNodeEditor : Editor
             if (GUILayout.Button("Left", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad4)
             {
                 ChangeWallOrientation(WallOrientation.Left, roomNodes);
+                roomsUpdated = true;
             }
 
             if (GUILayout.Button("Empty", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad5)
@@ -157,11 +173,13 @@ public class RoomNodeEditor : Editor
                     if (go.GetComponent<Wall>())
                         DestroyImmediate(go.GetComponent<Wall>());
                 }
+                roomsUpdated = true;
             }
 
             if (GUILayout.Button("Right", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad6)
             {
                 ChangeWallOrientation(WallOrientation.Right, roomNodes);
+                roomsUpdated = true;
             }
         }
         GUILayout.EndHorizontal();
@@ -170,16 +188,19 @@ public class RoomNodeEditor : Editor
             if (GUILayout.Button("Bottom Left", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad1)
             {
                 ChangeWallOrientation(WallOrientation.BottomLeft, roomNodes);
+                roomsUpdated = true;
             }
 
             if (GUILayout.Button("Bottom", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad2)
             {
                 ChangeWallOrientation(WallOrientation.Bottom, roomNodes);
+                roomsUpdated = true;
             }
 
             if (GUILayout.Button("Bottom Right", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad3)
             {
                 ChangeWallOrientation(WallOrientation.BottomRight, roomNodes);
+                roomsUpdated = true;
             }
         }
         GUILayout.EndHorizontal();
@@ -198,7 +219,7 @@ public class RoomNodeEditor : Editor
 
             roomNode.GetComponent<MeshRenderer>().sharedMaterial = roomNode.wallPiece.material;
 
-            roomNode.transform.rotation = orientation.ToRotation(); //@TODO: Don't do this!
+            roomNode.transform.rotation = Quaternion.identity;
         }
     }
 
