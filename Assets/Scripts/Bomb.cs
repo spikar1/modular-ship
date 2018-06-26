@@ -28,7 +28,6 @@ public class Bomb : MonoBehaviour, IDamagable {
             if (rb && !rbs.Contains(rb)) {
                 rbs.Add(rb);
             }
-                
         }
 
         for (int i = 0; i < rbs.Count; i++) {
@@ -36,8 +35,8 @@ public class Bomb : MonoBehaviour, IDamagable {
         }
 
         for (int i = dams.Count - 1; i >= 0; i--) {
-            float damage = Mathf.InverseLerp(radius, 0, Vector2.Distance(transform.position, dams[i].transform.position) * strength);
-            print(Vector2.Distance(transform.position, dams[i].transform.position));
+            float damage = Mathf.InverseLerp(radius, 0, Vector2.Distance(transform.position, dams[i].transform.position)) * strength;
+            print(damage);
             dams[i].GetComponent<IDamagable>().Damage(Vector2.zero, damage);
         }
         

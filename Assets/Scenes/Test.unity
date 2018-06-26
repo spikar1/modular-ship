@@ -629,11 +629,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.68
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.11
+      value: -0.68
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4300,11 +4300,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.75
+      value: -1.41
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.1100001
+      value: -0.93
       objectReference: {fileID: 0}
     - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6304,9 +6304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265e01db45775614bb0b25bf7a44b168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  radius: 10
-  strength: 30
+  hp: 5
+  radius: 50
+  strength: 20
 --- !u!4 &2143322062 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469,
