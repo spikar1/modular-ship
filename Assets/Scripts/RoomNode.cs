@@ -24,4 +24,20 @@ public class RoomNode : MonoBehaviour {
         if (wall)
             wall.Initialize(this);
     }
+
+    public void UpdateCollisionMesh()
+    {
+        
+        var meshFilter = GetComponent<MeshFilter>().sharedMesh;
+        if (meshFilter == null)
+            return;
+        
+        var cc = GetComponent<ColliderCreator>();
+        if (cc == null)
+            cc = gameObject.AddComponent<ColliderCreator>();
+
+        cc.collisionMesh = wallPiece.GetCollisionMesh(meshFilter);
+        if (!Application.isPlaying)
+            cc.Start();
+    }
 }

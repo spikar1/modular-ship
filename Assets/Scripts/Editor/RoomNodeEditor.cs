@@ -1,103 +1,117 @@
-﻿using UnityEditor;
-using UnityEngine;
-using System.Collections.Generic;
+﻿using UnityEngine;
+using UnityEditor;
 using UnityEditor.SceneManagement;
+using System.Collections.Generic;
+using System.Linq;
 
 [CanEditMultipleObjects]
 [CustomEditor(typeof(RoomNode))]
 public class RoomNodeEditor : Editor
 {
-    private RoomNode roomNode;
-    void OnEnable()
-    {
-        roomNode = (RoomNode) target;
-    }
-
     public override void OnInspectorGUI()
     {
-        bool diagonalLastValue = roomNode.isDiagonal;
+        bool dirtyAllRooms = false;
+        RoomNode[] roomNodes = new RoomNode[targets.Length];
+        for (int i = 0; i < targets.Length; i++)
+            roomNodes[i] = (RoomNode) targets[i];
+
+        bool[] diagonalLastValue = roomNodes.Select(rn => rn.isDiagonal).ToArray();
         DrawDefaultInspector();
 
-        //Check if object has MeshFilter and make collision.
-        if (roomNode.GetComponent<MeshFilter>())
-            if (GUILayout.Button("UpdateCollision"))
-                UpdateCollisionMesh();
-
-        bool showMeshPopup = true;
-        for (int i = 0; i < Selection.gameObjects.Length; i++)
+        if (GUILayout.Button("UpdateCollision"))
         {
-            var mf = Selection.gameObjects[i].GetComponent<MeshFilter>();
-            if (!mf)
-            {
-                showMeshPopup = false;
-                break;
-            }
-
-            if (i != 0)
-            {
-                MeshFilter lastmf = Selection.gameObjects[i - 1].GetComponent<MeshFilter>();
-                if (mf.sharedMesh.name.Split('_')[0] != lastmf.sharedMesh.name.Split('_')[0])
-                    showMeshPopup = false;
-            }
+            Undo.RecordObjects(targets, "Updating collision meshes");
+            foreach (var rn in roomNodes)
+                rn.UpdateCollisionMesh();
         }
 
-        if (showMeshPopup)
+        DrawSelectMeshPopup(roomNodes, ref dirtyAllRooms);
+
+        for (var i = 0; i < roomNodes.Length; i++)
         {
-            Mesh mesh = roomNode.GetComponent<MeshFilter>().sharedMesh;
-            string[] meshListStrings = new string[0];
-            if (mesh.name.StartsWith("corner"))
-                meshListStrings = GetMeshStringArray(roomNode.wallPiece.corner);
-
-            if (mesh.name.StartsWith("straight"))
-                meshListStrings = GetMeshStringArray(roomNode.wallPiece.straight);
-
-            if (mesh.name.StartsWith("diagonal"))
-                meshListStrings = GetMeshStringArray(roomNode.wallPiece.diagonal);
-
-            int mi = EditorGUILayout.Popup(roomNode.meshIndex, meshListStrings);
-            foreach (RoomNode rn in targets)
-            {
-                var mf = rn.GetComponent<MeshFilter>();
-                rn.meshIndex = mi;
-                SetMesh(mf, roomNode.wallOrientation, roomNode.isDiagonal, roomNode.meshIndex);
-            }
-        }
-
-        if (diagonalLastValue != roomNode.isDiagonal && roomNode.GetComponent<MeshFilter>())
-        {
-            foreach (RoomNode rn in targets)
+            RoomNode rn = roomNodes[i];
+            if (diagonalLastValue[i] != rn.isDiagonal && rn.GetComponent<MeshFilter>())
             {
                 rn.meshIndex = 0;
-                SetMesh(rn.GetComponent<MeshFilter>(), rn.wallOrientation, rn.isDiagonal);
+                SetMesh(rn, rn.wallOrientation);
+                dirtyAllRooms = true;
             }
         }
 
         Undo.RecordObjects(targets, "Orientation buttons");
-        OrientationButtons();
+        OrientationButtons(roomNodes);
 
-        if (GUI.changed)
+        if (dirtyAllRooms)
         {
-            foreach (RoomNode rn in targets)
+            foreach (var roomNode in roomNodes)
             {
-                EditorUtility.SetDirty(rn);
-                EditorSceneManager.MarkSceneDirty(rn.gameObject.scene);
+                EditorUtility.SetDirty(roomNode);
+                EditorSceneManager.MarkSceneDirty(roomNode.gameObject.scene);
             }
         }
     }
 
-    string[] GetMeshStringArray(List<Mesh> meshList)
+    private void DrawSelectMeshPopup(RoomNode[] roomNodes, ref bool dirtyAllRooms)
     {
-        string[] meshListStrings;
-        meshListStrings = new string[meshList.Count];
-        for (int i = 0; i < meshList.Count; i++)
+        var showMeshPopup = roomNodes.Length == 1;
+        var firstRoomNode = roomNodes[0];
+        var firstMeshFilter = firstRoomNode.GetComponent<MeshFilter>();
+
+        if (!showMeshPopup && firstMeshFilter)
+            showMeshPopup = roomNodes.All(rn =>
+            {
+                var mf = rn.GetComponent<MeshFilter>();
+                if (!mf)
+                    return false;
+                return mf.sharedMesh == firstMeshFilter.sharedMesh;
+            });
+
+        if (showMeshPopup)
         {
-            meshListStrings[i] = meshList[i].name;
+            var mesh = firstMeshFilter.GetComponent<MeshFilter>().sharedMesh;
+            string[] meshListStrings = null;
+
+            if (mesh.name.StartsWith("corner"))
+                meshListStrings = GetMeshStringArray(firstRoomNode.wallPiece.corner);
+
+            else if (mesh.name.StartsWith("straight"))
+                meshListStrings = GetMeshStringArray(firstRoomNode.wallPiece.straight);
+
+            else if (mesh.name.StartsWith("diagonal"))
+                meshListStrings = GetMeshStringArray(firstRoomNode.wallPiece.diagonal);
+
+            if (meshListStrings == null)
+            {
+                EditorGUILayout.LabelField($"Unknown mesh: {mesh.name}, can't generate select mesh dropdown");
+            }
+            else
+            {
+                var oldMi = firstRoomNode.meshIndex;
+                var newMI = EditorGUILayout.Popup(firstRoomNode.meshIndex, meshListStrings);
+
+                if (oldMi != newMI)
+                {
+                    dirtyAllRooms = true;
+                    foreach (RoomNode rn in roomNodes)
+                    {
+                        rn.meshIndex = newMI;
+                        SetMesh(rn, firstRoomNode.wallOrientation, firstRoomNode.meshIndex);
+                    }
+                }
+            }
         }
+    }
+
+    private string[] GetMeshStringArray(List<Mesh> meshList)
+    {
+        var meshListStrings = new string[meshList.Count];
+        for (int i = 0; i < meshList.Count; i++)
+            meshListStrings[i] = meshList[i].name;
 
         return meshListStrings;
     }
 
-    void OrientationButtons()
+    private void OrientationButtons(RoomNode[] roomNodes)
     {
         float buttonWidth = (Screen.width / 3) - 20;
         GUILayoutOption GUIbuttonWidth = GUILayout.Width(buttonWidth);
@@ -106,17 +120,17 @@ public class RoomNodeEditor : Editor
         {
             if (GUILayout.Button("Top Left", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad7)
             {
-                ChangeWallOrientation(WallOrientation.TopLeft);
+                ChangeWallOrientation(WallOrientation.TopLeft, roomNodes);
             }
 
             if (GUILayout.Button("Top", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad8)
             {
-                ChangeWallOrientation(WallOrientation.Top);
+                ChangeWallOrientation(WallOrientation.Top, roomNodes);
             }
 
             if (GUILayout.Button("Top Right", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad9)
             {
-                ChangeWallOrientation(WallOrientation.TopRight);
+                ChangeWallOrientation(WallOrientation.TopRight, roomNodes);
             }
         }
         GUILayout.EndHorizontal();
@@ -124,7 +138,7 @@ public class RoomNodeEditor : Editor
         {
             if (GUILayout.Button("Left", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad4)
             {
-                ChangeWallOrientation(WallOrientation.Left);
+                ChangeWallOrientation(WallOrientation.Left, roomNodes);
             }
 
             if (GUILayout.Button("Empty", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad5)
@@ -147,7 +161,7 @@ public class RoomNodeEditor : Editor
 
             if (GUILayout.Button("Right", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad6)
             {
-                ChangeWallOrientation(WallOrientation.Right);
+                ChangeWallOrientation(WallOrientation.Right, roomNodes);
             }
         }
         GUILayout.EndHorizontal();
@@ -155,77 +169,58 @@ public class RoomNodeEditor : Editor
         {
             if (GUILayout.Button("Bottom Left", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad1)
             {
-                ChangeWallOrientation(WallOrientation.BottomLeft);
+                ChangeWallOrientation(WallOrientation.BottomLeft, roomNodes);
             }
 
             if (GUILayout.Button("Bottom", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad2)
             {
-                ChangeWallOrientation(WallOrientation.Bottom);
+                ChangeWallOrientation(WallOrientation.Bottom, roomNodes);
             }
 
             if (GUILayout.Button("Bottom Right", GUIbuttonWidth) || Event.current.keyCode == KeyCode.Keypad3)
             {
-                ChangeWallOrientation(WallOrientation.BottomRight);
+                ChangeWallOrientation(WallOrientation.BottomRight, roomNodes);
             }
         }
         GUILayout.EndHorizontal();
     }
 
-    void ChangeWallOrientation(WallOrientation wo)
+    private void ChangeWallOrientation(WallOrientation orientation, RoomNode[] roomNodes)
     {
-        for (int i = 0; i < Selection.gameObjects.Length; i++)
+        foreach (var roomNode in roomNodes)
         {
-            GameObject go = Selection.gameObjects[i];
-            MeshFilter mf;
-            RoomNode rn = go.GetComponent<RoomNode>();
-            rn.wallOrientation = wo;
-            rn.meshIndex = 0;
-            if (mf = go.GetComponent<MeshFilter>())
-            {
-                SetMesh(mf, wo,
-                    roomNode.isDiagonal); //mf.mesh = roomNode.wallPiece.GetMeshFromOrientation(wo, roomNode.isDiagonal);
-            }
-            else
-                go.AddComponent<MeshFilter>().mesh = roomNode.wallPiece.GetMeshFromOrientation(wo, roomNode.isDiagonal);
+            roomNode.wallOrientation = orientation;
+            roomNode.meshIndex = 0;
+            SetMesh(roomNode, orientation);
 
-            if (!go.GetComponent<MeshRenderer>())
-                go.AddComponent<MeshRenderer>();
+            if (!roomNode.GetComponent<MeshRenderer>())
+                roomNode.gameObject.AddComponent<MeshRenderer>();
 
-            go.GetComponent<MeshRenderer>().material = roomNode.wallPiece.material;
+            roomNode.GetComponent<MeshRenderer>().sharedMaterial = roomNode.wallPiece.material;
 
-            go.transform.rotation = wo.ToRotation();
+            roomNode.transform.rotation = orientation.ToRotation(); //@TODO: Don't do this!
         }
     }
 
-    void SetMesh(MeshFilter _mf, WallOrientation wo, bool _isDiagonal, int index = -1)
+    private void SetMesh(RoomNode roomNode, WallOrientation orientation, int meshIndex = -1)
     {
-        _mf.mesh = roomNode.wallPiece.GetMeshFromOrientation(wo, _isDiagonal, index);
-        UpdateWall(_mf.gameObject);
+        var meshFilter = roomNode.GetComponent<MeshFilter>();
+        if (!meshFilter)
+            meshFilter = roomNode.gameObject.AddComponent<MeshFilter>();
+
+        meshFilter.mesh = roomNode.wallPiece.GetMeshFromOrientation(orientation, roomNode.isDiagonal, meshIndex);
+        UpdateWall(meshFilter.gameObject);
     }
 
-    void UpdateWall(GameObject go)
+    private void UpdateWall(GameObject go)
     {
         if (!go.GetComponent<Wall>())
             go.AddComponent<Wall>();
-        Wall w = go.GetComponent<Wall>();
-        RoomNode rn = go.GetComponent<RoomNode>();
+        var wall = go.GetComponent<Wall>();
+        var roomNode = go.GetComponent<RoomNode>();
         if (!EditorApplication.isPlaying)
         {
-            w.integrity = rn.wallPiece.integrity;
-        }
-    }
-
-    private void UpdateCollisionMesh()
-    {
-        foreach (RoomNode rn in targets)
-        {
-            var cc = rn.GetComponent<ColliderCreator>();
-            if (cc == null)
-                cc = rn.gameObject.AddComponent<ColliderCreator>();
-
-            cc.collisionMesh = rn.wallPiece.GetCollisionMesh(rn.GetComponent<MeshFilter>().sharedMesh);
-            if (!Application.isPlaying)
-                cc.Start();
+            wall.integrity = roomNode.wallPiece.integrity;
         }
     }
 }
