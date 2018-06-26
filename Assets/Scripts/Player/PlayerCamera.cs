@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour {
 
-	private void Update () {
-		var shiftHeld = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-		RotateCamera(shiftHeld);
-		ZoomCamera(shiftHeld);
+    int player;
+
+    private void Start() {
+        player = transform.parent.GetComponent<Player>().player;
+    }
+
+    private void Update () {
+        print(Input.GetAxisRaw("RightStick X"));
+        switch (player) {
+            case 0:
+                RotateCamera(Input.GetAxisRaw("Mouse X"), Input.GetMouseButton(2));
+                ZoomCamera(Input.mouseScrollDelta.y);
+                break;
+            case 1:
+                RotateCamera(Input.GetAxisRaw("RightStick X") * .4f);
+                ZoomCamera(-Input.GetAxisRaw("RightStick Y") * .1f);
+                break;
+            default:
+                Debug.LogError("The player int " + player + " is not supported");
+                break;
+        }
+		
 	}
 
-	private void RotateCamera(bool shiftHeld) {
+	private void RotateCamera(float input, bool shouldRotate = true) {
+        if (!shouldRotate)
+            return;
 		float rotation = 0f;
-		if (Input.GetMouseButton(2))
-			rotation -= Input.GetAxis("Mouse X") * 3;
-		if (Input.GetKeyDown(KeyCode.Q))
-			rotation -= shiftHeld ? 30f : 5f;
-		if (Input.GetKeyDown(KeyCode.E))
-			rotation += shiftHeld ? 30f : 5f;
-		
+		rotation -= input * 3;
 		transform.Rotate(transform.forward, rotation);
 	}
 	
-	private void ZoomCamera(bool shiftHeld) {
-		var zoom = Input.mouseScrollDelta.y;
-		if (Input.GetKeyDown(KeyCode.PageUp))
-			zoom += shiftHeld ? 5f : 1f;
-		if (Input.GetKeyDown(KeyCode.PageDown))
-			zoom -= shiftHeld ? 5f : 1f;
+	private void ZoomCamera(float input) {
+		var zoom = input;
 
 		transform.GetChild(0).position += transform.GetChild(0).forward * zoom;
 	}
