@@ -53,9 +53,9 @@ public class RoomNodeEditor : Editor
 
     private void DrawSelectMeshPopup(RoomNode[] roomNodes, ref bool dirtyAllRooms)
     {
-        var showMeshPopup = roomNodes.Length == 1;
         var firstRoomNode = roomNodes[0];
         var firstMeshFilter = firstRoomNode.GetComponent<MeshFilter>();
+        var showMeshPopup = roomNodes.Length == 1 && firstMeshFilter;
 
         if (!showMeshPopup && firstMeshFilter)
             showMeshPopup = roomNodes.All(rn =>
