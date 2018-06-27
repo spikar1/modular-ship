@@ -62,6 +62,9 @@ public class RoomNodeEditor : Editor
                     SetMesh(room, room.wallOrientation, room.meshIndex);
                     room.UpdateCollisionMesh();
                 }
+                else {
+                    RenameNode(room, false);
+                }
             }
         } 
     }
@@ -164,6 +167,7 @@ public class RoomNodeEditor : Editor
             {
                 for (int i = 0; i < Selection.gameObjects.Length; i++)
                 {
+                    RenameNode(roomNodes[i], false);
                     GameObject go = Selection.gameObjects[i];
                     if (go.GetComponent<MeshFilter>())
                         DestroyImmediate(go.GetComponent<MeshFilter>());
@@ -176,6 +180,7 @@ public class RoomNodeEditor : Editor
                     if (go.GetComponent<Wall>())
                         DestroyImmediate(go.GetComponent<Wall>());
                 }
+                
                 roomsUpdated = true;
             }
 
@@ -228,7 +233,7 @@ public class RoomNodeEditor : Editor
 
     private void SetMesh(RoomNode roomNode, WallOrientation orientation, int meshIndex = -1)
     {
-        roomNode.gameObject.name = "Node_" + orientation.ToString();
+        RenameNode(roomNode, true);
 
         var meshFilter = roomNode.GetComponent<MeshFilter>();
         if (!meshFilter)
@@ -236,6 +241,13 @@ public class RoomNodeEditor : Editor
 
         meshFilter.mesh = roomNode.wallPiece.GetMeshFromOrientation(orientation, roomNode.isDiagonal, meshIndex);
         UpdateWall(meshFilter.gameObject);
+    }
+
+    private void RenameNode(RoomNode rn, bool hasMesh) {
+        if(hasMesh)
+            rn.gameObject.name = "N_" + rn.wallPiece.name + "_" + rn.wallOrientation.ToString();
+        else
+            rn.gameObject.name = "N_" + "Empty_" + rn.wallOrientation.ToString();
     }
 
     private void UpdateWall(GameObject go)

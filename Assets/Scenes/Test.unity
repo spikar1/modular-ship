@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 46056685}
   - component: {fileID: 46056684}
   m_Layer: 0
-  m_Name: GameObject (18)
+  m_Name: N_HeavyWall_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -483,7 +483,7 @@ GameObject:
   - component: {fileID: 108690259}
   - component: {fileID: 108690266}
   m_Layer: 0
-  m_Name: GameObject (28)
+  m_Name: N_HeavyWall_TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 194586189}
   - component: {fileID: 194586188}
   m_Layer: 0
-  m_Name: GameObject (21)
+  m_Name: N_Empty_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 286432522}
   - component: {fileID: 286432524}
   m_Layer: 0
-  m_Name: Node_BottomLeft
+  m_Name: N_HeavyWall_BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 361397204}
   - component: {fileID: 361397203}
   m_Layer: 0
-  m_Name: GameObject (17)
+  m_Name: N_BasicWall_BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1328,7 +1328,7 @@ GameObject:
   - component: {fileID: 456128767}
   - component: {fileID: 456128769}
   m_Layer: 0
-  m_Name: GameObject (20)
+  m_Name: N_HeavyWall_TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1494,7 +1494,7 @@ GameObject:
   - component: {fileID: 488591122}
   - component: {fileID: 488591118}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: N_BasicWall_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1679,7 +1679,7 @@ GameObject:
   - component: {fileID: 532390835}
   - component: {fileID: 532390834}
   m_Layer: 0
-  m_Name: GameObject (23)
+  m_Name: N_Empty_TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1745,7 +1745,7 @@ GameObject:
   - component: {fileID: 562172215}
   - component: {fileID: 562172214}
   m_Layer: 0
-  m_Name: GameObject (25)
+  m_Name: N_HeavyWall_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1965,7 +1965,7 @@ GameObject:
   - component: {fileID: 673567950}
   - component: {fileID: 673567952}
   m_Layer: 0
-  m_Name: GameObject (17)
+  m_Name: N_BasicWall_BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2012,7 +2012,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 673567944}
-  m_Mesh: {fileID: 43448907242316842, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
+  m_Mesh: {fileID: 43664006090730834, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
 --- !u!114 &673567947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2081,23 +2081,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.26666698, y: -0.35000002}
-      - {x: 0.14060102, y: -0.35}
-      - {x: 0.35, y: -0.13652097}
-      - {x: 0.34999996, y: 0.26666704}
-      - {x: 0.24999997, y: 0.33333302}
-      - {x: 0.24999996, y: 0.5}
-      - {x: 0.49999997, y: 0.50000006}
-      - {x: 0.49999997, y: 0.33333302}
-      - {x: 0.49999997, y: 0.26666704}
-      - {x: 0.5, y: -0.08156896}
+    - - {x: 0.50000006, y: -0.34999996}
       - {x: 0.50000006, y: -0.49999997}
-      - {x: 0.081569046, y: -0.5}
-      - {x: -0.26666698, y: -0.5}
-      - {x: -0.33333296, y: -0.5}
+      - {x: 0.35000002, y: -0.49999997}
       - {x: -0.49999997, y: -0.50000006}
       - {x: -0.49999997, y: -0.25000003}
-      - {x: -0.33333296, y: -0.25000003}
+      - {x: 0.25000003, y: -0.24999999}
+      - {x: 0.24999996, y: 0.5}
+      - {x: 0.49999997, y: 0.50000006}
 --- !u!114 &673567951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2109,7 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 43453228817950410, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
+  collisionMesh: {fileID: 43208499183152264, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
     type: 2}
 --- !u!114 &673567952
 MonoBehaviour:
@@ -2145,7 +2136,7 @@ GameObject:
   - component: {fileID: 784748697}
   - component: {fileID: 784748696}
   m_Layer: 0
-  m_Name: GameObject (25)
+  m_Name: N_HeavyWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2201,18 +2192,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.369315, y: 0.25}
+    - - {x: 0.5, y: 0.25}
       - {x: -0.5, y: 0.25}
       - {x: -0.5, y: 0.5}
-      - {x: -0.369315, y: 0.5}
-      - {x: -0.319535, y: 0.5}
-      - {x: 0.319535, y: 0.5}
-      - {x: 0.369315, y: 0.5}
       - {x: 0.5, y: 0.5}
-      - {x: 0.5, y: 0.25}
-      - {x: 0.369315, y: 0.25}
-      - {x: 0.319535, y: 0.35}
-      - {x: -0.319535, y: 0.35}
 --- !u!114 &784748698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2224,7 +2207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 43330602050716794, guid: cc2c1e31f1fd8c54788f2be6b33e9990,
+  collisionMesh: {fileID: 43802680211655622, guid: cc2c1e31f1fd8c54788f2be6b33e9990,
     type: 2}
 --- !u!23 &784748699
 MeshRenderer:
@@ -2267,7 +2250,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 784748694}
-  m_Mesh: {fileID: 43641824928385206, guid: cc2c1e31f1fd8c54788f2be6b33e9990, type: 2}
+  m_Mesh: {fileID: 43973863149281550, guid: cc2c1e31f1fd8c54788f2be6b33e9990, type: 2}
 --- !u!114 &784748701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2339,7 +2322,7 @@ GameObject:
   - component: {fileID: 855619515}
   - component: {fileID: 855619514}
   m_Layer: 0
-  m_Name: GameObject (22)
+  m_Name: N_Empty_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2405,7 +2388,7 @@ GameObject:
   - component: {fileID: 891161496}
   - component: {fileID: 891161495}
   m_Layer: 0
-  m_Name: GameObject (20)
+  m_Name: N_HeavyWall_TopLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2631,7 +2614,7 @@ GameObject:
   - component: {fileID: 953208107}
   - component: {fileID: 953208114}
   m_Layer: 0
-  m_Name: Door
+  m_Name: N_HeavyWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2799,7 +2782,7 @@ GameObject:
   - component: {fileID: 970466440}
   - component: {fileID: 970466439}
   m_Layer: 0
-  m_Name: GameObject (14)
+  m_Name: N_Empty_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2865,7 +2848,7 @@ GameObject:
   - component: {fileID: 975389515}
   - component: {fileID: 975389514}
   m_Layer: 0
-  m_Name: GameObject (22)
+  m_Name: N_BasicWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3027,7 +3010,7 @@ GameObject:
   - component: {fileID: 1019052598}
   - component: {fileID: 1019052597}
   m_Layer: 0
-  m_Name: GameObject (11)
+  m_Name: N_HeavyWall_BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3083,14 +3066,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.39999998, y: -0.25}
+    - - {x: -0.24999996, y: 0.5}
       - {x: 0.49999994, y: -0.25}
       - {x: 0.49999994, y: -0.5}
-      - {x: 0.19999996, y: -0.49999997}
-      - {x: -0.49999997, y: 0.20000002}
       - {x: -0.49999994, y: 0.5}
-      - {x: -0.24999996, y: 0.5}
-      - {x: -0.24999996, y: 0.4}
 --- !u!114 &1019052599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3102,7 +3081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 43826434901560138, guid: cc2c1e31f1fd8c54788f2be6b33e9990,
+  collisionMesh: {fileID: 43506045274687724, guid: cc2c1e31f1fd8c54788f2be6b33e9990,
     type: 2}
 --- !u!23 &1019052600
 MeshRenderer:
@@ -3145,7 +3124,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1019052595}
-  m_Mesh: {fileID: 43667919701086560, guid: cc2c1e31f1fd8c54788f2be6b33e9990, type: 2}
+  m_Mesh: {fileID: 43518138025999324, guid: cc2c1e31f1fd8c54788f2be6b33e9990, type: 2}
 --- !u!114 &1019052602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3221,7 +3200,7 @@ GameObject:
   - component: {fileID: 1136258080}
   - component: {fileID: 1136258079}
   m_Layer: 0
-  m_Name: GameObject (12)
+  m_Name: N_BasicWall_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3538,7 +3517,7 @@ GameObject:
   - component: {fileID: 1286150407}
   - component: {fileID: 1286150406}
   m_Layer: 0
-  m_Name: GameObject (16)
+  m_Name: N_Empty_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3604,7 +3583,7 @@ GameObject:
   - component: {fileID: 1351456857}
   - component: {fileID: 1351456856}
   m_Layer: 0
-  m_Name: GameObject (16)
+  m_Name: N_Empty_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3665,7 +3644,7 @@ GameObject:
   - component: {fileID: 1388351832}
   - component: {fileID: 1388351831}
   m_Layer: 0
-  m_Name: GameObject (23)
+  m_Name: N_Empty_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3891,7 +3870,7 @@ GameObject:
   - component: {fileID: 1442834893}
   - component: {fileID: 1442834892}
   m_Layer: 0
-  m_Name: GameObject (21)
+  m_Name: N_Empty_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3957,7 +3936,7 @@ GameObject:
   - component: {fileID: 1466149892}
   - component: {fileID: 1466149891}
   m_Layer: 0
-  m_Name: GameObject (18)
+  m_Name: N_HeavyWall_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4186,7 +4165,7 @@ GameObject:
   - component: {fileID: 1488115100}
   - component: {fileID: 1488115099}
   m_Layer: 0
-  m_Name: GameObject (24)
+  m_Name: N_Empty_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4340,7 +4319,7 @@ GameObject:
   - component: {fileID: 1527764564}
   - component: {fileID: 1527764563}
   m_Layer: 0
-  m_Name: GameObject (26)
+  m_Name: N_BasicWall_TopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4566,7 +4545,7 @@ GameObject:
   - component: {fileID: 1685094835}
   - component: {fileID: 1685094834}
   m_Layer: 0
-  m_Name: Wall (1)
+  m_Name: N_BasicWall_BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4609,14 +4588,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.24999997, y: 0.40000004}
+    - - {x: -0.49999997, y: -0.25000003}
       - {x: 0.24999996, y: 0.5}
       - {x: 0.49999997, y: 0.50000006}
-      - {x: 0.49999997, y: 0.20000005}
-      - {x: -0.19999996, y: -0.5}
       - {x: -0.49999997, y: -0.50000006}
-      - {x: -0.49999997, y: -0.25000003}
-      - {x: -0.39999998, y: -0.25000003}
 --- !u!114 &1685094835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4628,7 +4603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 43957040415091626, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
+  collisionMesh: {fileID: 43961474213042784, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
     type: 2}
 --- !u!114 &1685094836
 MonoBehaviour:
@@ -4684,7 +4659,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1685094832}
-  m_Mesh: {fileID: 43133460180131186, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
+  m_Mesh: {fileID: 43246235421560566, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
 --- !u!114 &1685094839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4815,7 +4790,7 @@ GameObject:
   - component: {fileID: 1763809797}
   - component: {fileID: 1763809796}
   m_Layer: 0
-  m_Name: GameObject (14)
+  m_Name: N_Empty_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4974,7 +4949,7 @@ GameObject:
   - component: {fileID: 1807863213}
   - component: {fileID: 1807863212}
   m_Layer: 0
-  m_Name: GameObject (12)
+  m_Name: N_BasicWall_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5136,7 +5111,7 @@ GameObject:
   - component: {fileID: 1841411040}
   - component: {fileID: 1841411042}
   m_Layer: 0
-  m_Name: GameObject (26)
+  m_Name: N_BasicWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5183,7 +5158,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1841411034}
-  m_Mesh: {fileID: 43136942363093152, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
+  m_Mesh: {fileID: 43104296972367376, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
 --- !u!114 &1841411037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5252,18 +5227,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.369315, y: 0.25}
+    - - {x: 0.5, y: 0.25}
       - {x: -0.5, y: 0.25}
       - {x: -0.5, y: 0.5}
-      - {x: -0.369315, y: 0.5}
-      - {x: -0.319535, y: 0.5}
-      - {x: 0.319535, y: 0.5}
-      - {x: 0.369315, y: 0.5}
       - {x: 0.5, y: 0.5}
-      - {x: 0.5, y: 0.25}
-      - {x: 0.369315, y: 0.25}
-      - {x: 0.319535, y: 0.35}
-      - {x: -0.319535, y: 0.35}
 --- !u!114 &1841411041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5275,7 +5242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 43258729550092936, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
+  collisionMesh: {fileID: 43129746577893214, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
     type: 2}
 --- !u!114 &1841411042
 MonoBehaviour:
@@ -5300,13 +5267,59 @@ GameObject:
   - component: {fileID: 1864667264}
   - component: {fileID: 1864667263}
   - component: {fileID: 1864667262}
+  - component: {fileID: 1864667267}
+  - component: {fileID: 1864667266}
+  - component: {fileID: 1864667265}
+  - component: {fileID: 1864667261}
+  - component: {fileID: 1864667260}
   m_Layer: 0
-  m_Name: GameObject (13)
+  m_Name: N_BasicWall_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!60 &1864667260
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864667259}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.49999997, y: -0.25000003}
+      - {x: 0.5, y: -0.24999996}
+      - {x: 0.50000006, y: -0.49999997}
+      - {x: -0.49999997, y: -0.50000006}
+--- !u!114 &1864667261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864667259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMesh: {fileID: 43408003086408612, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
+    type: 2}
 --- !u!114 &1864667262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5351,6 +5364,61 @@ Transform:
   m_Father: {fileID: 1394342697}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &1864667265
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864667259}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &1864667266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864667259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126a9372211698d45a83dc364464af03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  integrity: 12
+  orientation: 0
+--- !u!33 &1864667267
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1864667259}
+  m_Mesh: {fileID: 43621452428988134, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
 --- !u!4 &1887703456 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4101246356363566, guid: d868cfe68cf92d5438bfc300bca43035,
@@ -5372,7 +5440,7 @@ GameObject:
   - component: {fileID: 1899945700}
   - component: {fileID: 1899945707}
   m_Layer: 0
-  m_Name: GameObject (27)
+  m_Name: N_HeavyWall_TopRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5534,7 +5602,7 @@ GameObject:
   - component: {fileID: 1938922837}
   - component: {fileID: 1938922836}
   m_Layer: 0
-  m_Name: GameObject (15)
+  m_Name: N_BasicWall_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5814,7 +5882,7 @@ GameObject:
   - component: {fileID: 1988901476}
   - component: {fileID: 1988901475}
   m_Layer: 0
-  m_Name: GameObject (29)
+  m_Name: N_BasicWall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5870,18 +5938,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.369315, y: 0.25}
+    - - {x: 0.5, y: 0.25}
       - {x: -0.5, y: 0.25}
       - {x: -0.5, y: 0.5}
-      - {x: -0.369315, y: 0.5}
-      - {x: -0.319535, y: 0.5}
-      - {x: 0.319535, y: 0.5}
-      - {x: 0.369315, y: 0.5}
       - {x: 0.5, y: 0.5}
-      - {x: 0.5, y: 0.25}
-      - {x: 0.369315, y: 0.25}
-      - {x: 0.319535, y: 0.35}
-      - {x: -0.319535, y: 0.35}
 --- !u!114 &1988901477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5893,7 +5953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 43258729550092936, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
+  collisionMesh: {fileID: 43129746577893214, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
     type: 2}
 --- !u!23 &1988901478
 MeshRenderer:
@@ -5936,7 +5996,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1988901473}
-  m_Mesh: {fileID: 43136942363093152, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
+  m_Mesh: {fileID: 43104296972367376, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
 --- !u!114 &1988901480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6024,7 +6084,7 @@ GameObject:
   - component: {fileID: 2004523179}
   - component: {fileID: 2004523178}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: N_BasicWall_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6294,7 +6354,7 @@ GameObject:
   - component: {fileID: 2049800506}
   - component: {fileID: 2049800505}
   m_Layer: 0
-  m_Name: GameObject (15)
+  m_Name: N_Empty_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6306,7 +6366,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2049800503}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: -1.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -6611,7 +6671,7 @@ GameObject:
   - component: {fileID: 2115025485}
   - component: {fileID: 2115025484}
   m_Layer: 0
-  m_Name: GameObject (30)
+  m_Name: N_BasicWall_BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6654,14 +6714,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.39999998, y: -0.25}
+    - - {x: -0.24999996, y: 0.5}
       - {x: 0.49999994, y: -0.25}
       - {x: 0.49999994, y: -0.5}
-      - {x: 0.19999996, y: -0.49999997}
-      - {x: -0.49999997, y: 0.20000002}
       - {x: -0.49999994, y: 0.5}
-      - {x: -0.24999996, y: 0.5}
-      - {x: -0.24999996, y: 0.4}
 --- !u!114 &2115025485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6673,7 +6729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b768a5a18b2dbbe4db90576c556af930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 43563495757975576, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
+  collisionMesh: {fileID: 43349413007879276, guid: 7e7b2503e7e40bd45b2d38c7359b3f50,
     type: 2}
 --- !u!114 &2115025486
 MonoBehaviour:
@@ -6729,7 +6785,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2115025482}
-  m_Mesh: {fileID: 43217234349377854, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
+  m_Mesh: {fileID: 43537823315655290, guid: 7e7b2503e7e40bd45b2d38c7359b3f50, type: 2}
 --- !u!114 &2115025489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6782,7 +6838,7 @@ GameObject:
   - component: {fileID: 2143982751}
   - component: {fileID: 2143982750}
   m_Layer: 0
-  m_Name: GameObject (13)
+  m_Name: N_BasicWall_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
