@@ -133,6 +133,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  radius: 30
-  pushForce: 100
-  strength: 2
+  explosion: {fileID: 11400000, guid: 7736e64bfcfeeba46847cc13c5161d9b, type: 2}
