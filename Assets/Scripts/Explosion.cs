@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu]
 public class Explosion : ScriptableObject {
 
     public float radius = 2;
     public float pushForce = 10;
     public float strength = 2;
 
-    void Explode(Vector3 pos) {
+    public void Explode(Vector3 pos) {
         Collider2D[] cols = Physics2D.OverlapCircleAll(pos, radius);
         List<Rigidbody2D> rbs = new List<Rigidbody2D>();
         List<GameObject> dams = new List<GameObject>();
@@ -24,14 +25,12 @@ public class Explosion : ScriptableObject {
         }
 
         for (int i = 0; i < rbs.Count; i++) {
-            rbs[i].AddExplosionForce(pushForce, transform.position, radius);
+            rbs[i].AddExplosionForce(pushForce, pos, radius);
         }
 
         for (int i = dams.Count - 1; i >= 0; i--) {
-            float damage = Mathf.InverseLerp(radius, 0, Vector2.Distance(transform.position, dams[i].transform.position)) * strength;
-            print(damage);
+            float damage = Mathf.InverseLerp(radius, 0, Vector2.Distance(pos, dams[i].transform.position)) * strength;
             dams[i].GetComponent<IDamagable>().Damage(Vector2.zero, damage);
         }
-        Destroy(gameObject);
     }
 }
