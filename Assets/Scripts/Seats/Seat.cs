@@ -19,15 +19,21 @@ public sealed class Seat : MonoBehaviour
             ejectPoint = transform.position + Vector3.up;
 
         inputReceivers = new List<IInputReceiver>();
-        foreach (var b in behaviours)
-        {
+        foreach (var b in behaviours) {
             var ir = b.GetComponent<IInputReceiver>();
-            if (ir != null) 
+            if (ir != null)
                 inputReceivers.Add(ir);
-            else
+            else {
                 Debug.LogWarning(
                     $"Object {b.name} is attached as an inputreceiver to seat {name}, but it's not " +
                     $"got any inputReceivers attached!", b);
+                var comps = b.GetComponents<Component>();
+                foreach (var item in comps) {
+                    Debug.Log(item + "/" + (item is IInputReceiver));
+                    var gun = new LaserGun();
+                    Debug.Log(gun is IInputReceiver);
+                }
+            }
         }
     }
 

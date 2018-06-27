@@ -3,7 +3,7 @@
 public class LaserGun : Gun, IInputReciever {
     bool fireRay = false;
 
-    public override void EndShoot() {
+    public override void EndShoot() { 
         fireRay = false;
     }
 
