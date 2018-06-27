@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    private IInputReceiver[] inputReceivers;
+    private IToggelableInputReceiver[] inputReceivers;
     public int player;
 
     private void Start()
     {
-        inputReceivers = GetComponents<IInputReceiver>();
+        inputReceivers = GetComponents<IToggelableInputReceiver>();
         Array.Sort(inputReceivers, (ir1, ir2) => ir1.InputOrder.CompareTo(ir2.InputOrder));
     }
 

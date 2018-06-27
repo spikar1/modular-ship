@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 
-public class LaserGun : Gun, IInputReciever {
+public class LaserGun : Gun {
     bool fireRay = false;
+
+    private void Awake()
+    {
+        
+    }
 
     public override void EndShoot() {
         fireRay = false;

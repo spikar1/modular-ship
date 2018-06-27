@@ -1,7 +1,11 @@
 ﻿public interface IInputReceiver
 {
     void OnUpdate(Inputs inputs);
-    int InputOrder { get; }
+}
+
+public interface IToggelableInputReceiver : IInputReceiver
+{
+    int  InputOrder { get; }
     bool ReceiveInput { get; }
 }
 

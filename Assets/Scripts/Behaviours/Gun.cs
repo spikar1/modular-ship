@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Gun : MonoBehaviour, IInputReciever {
+public abstract class Gun : MonoBehaviour, IInputReceiver {
     public bool isFiring;
     float angle = 0;
     public float maxRotation;
     public Transform muzzle;
 
-    public Inputs inputs;
-
-    public void ReceiveInput(Inputs _inputs) {
-        inputs = _inputs;
-        if (inputs.action1Down)
+    public void OnUpdate(Inputs inputs)
+    {
+        if (inputs.interactDown)
             StartShoot();
-        if (inputs.action1Up)
+        if (inputs.interactUp)
             EndShoot();
 
         RotateTurret(inputs.axis);

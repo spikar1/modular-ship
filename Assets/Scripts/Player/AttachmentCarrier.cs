@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class AttachmentCarrier : MonoBehaviour, IInputReceiver
+public class AttachmentCarrier : MonoBehaviour, IToggelableInputReceiver
 {
     public int InputOrder => InputReceiverOrder.AttachmentCarrier;
     public bool ReceiveInput { get; set; }

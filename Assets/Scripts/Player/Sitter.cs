@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Sitter : MonoBehaviour, IInputReceiver
+public class Sitter : MonoBehaviour, IToggelableInputReceiver
 {
     private Mover mover;
     private Interactor interactor;

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ship : MonoBehaviour, IInputReciever
+public class Ship : MonoBehaviour, IInputReceiver
 {
     private Rigidbody2D rb;
     private List<Thruster> downThrusters = new List<Thruster>();
@@ -70,7 +69,7 @@ public class Ship : MonoBehaviour, IInputReciever
         marker.transform.localPosition = rbCenterOfMass;
     }
 
-    public void ReceiveInput(Inputs inputs)
+    public void OnUpdate(Inputs inputs)
     {
         var movement = inputs.axis;
         if (movement == default(Vector2))
@@ -89,9 +88,7 @@ public class Ship : MonoBehaviour, IInputReciever
 
         foreach (var thruster in thrustersToFire)
         {
-            var thrust = transform.rotation * thruster.Thrust();
-            var thrustPos = ((Vector2) thruster.transform.position).RoundedToInt();
-            rb.AddForceAtPosition(thrust, thrustPos);
+            thruster.Thrust();
         }
     }
 
