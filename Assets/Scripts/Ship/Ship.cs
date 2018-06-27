@@ -50,7 +50,7 @@ public class Ship : MonoBehaviour, IInputReceiver
         var attachables = GetComponentsInChildren<Attachment>();
         foreach (var attachable in attachables)
         {
-            attachable.TryAttachToNearest(walls);
+            attachable.TryPutDown();
         }
     }
 

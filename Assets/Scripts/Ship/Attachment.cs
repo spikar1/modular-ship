@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Attachment : MonoBehaviour
+public class Attachment : MonoBehaviour, ICarryable
 {
     private bool IsCarried => attachedTo == null;
     private IAttachable[] attachables;
@@ -12,32 +12,42 @@ public class Attachment : MonoBehaviour
         attachables = GetComponents<IAttachable>();
     }
 
-    public bool CanBePickedUp()
+
+    public void Use() { }
+
+    public bool TryPickUp(Carrier carrier)
     {
-        return !IsCarried; //@TODO: Raycast maybe?
-    }
-    
-    public void OnPickUp()
-    {
+        if (IsCarried)
+            return false;
+
         foreach (var attachable in attachables)
             attachable.OnDetach();
+
         attachedTo.attachedThing = null;
+        attachedTo = null;
+        transform.parent = carrier.transform;
+        transform.localPosition = Vector3.zero;
+
+        return true;
     }
 
-    public bool TryAttachToNearest(List<Wall> walls)
+    private readonly List<Wall> wallBuffer = new List<Wall>();
+
+    public bool TryPutDown()
     {
-        if(walls.Count == 0)
+        Physics2DHelper.GetAllNear(transform.position, .5f, -1, wallBuffer);
+        if (wallBuffer.Count == 0)
         {
             return false;
         }
 
         Wall closest = null;
         var closestDistance = Mathf.Infinity;
-        foreach (var wall in walls)
+        foreach (var wall in wallBuffer)
         {
-            if(wall.attachedThing != null)
+            if (wall.attachedThing != null)
                 continue;
-                
+
             var distance = Vector2.Distance(wall.transform.position, transform.position);
             if (distance < closestDistance)
             {
@@ -59,7 +69,7 @@ public class Attachment : MonoBehaviour
         transform.localRotation = closest.orientation.ToLookRotation();
         foreach (var attachable in attachables)
             attachable.OnAttachedTo(closest);
-        return true; 
+        return true;
     }
 }
 

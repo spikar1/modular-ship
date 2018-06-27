@@ -5,7 +5,7 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
 {
     private Mover mover;
     private Interactor interactor;
-    private AttachmentCarrier attachmentCarrier;
+    private Carrier carrier;
 
     private Seat currentSeat;
 
@@ -16,7 +16,7 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
     {
         mover = GetComponent<Mover>();
         interactor = GetComponent<Interactor>();
-        attachmentCarrier = GetComponent<AttachmentCarrier>();
+        carrier = GetComponent<Carrier>();
         ReceiveInput = true;
     }
 
@@ -98,6 +98,6 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
     {
         mover.ReceiveInput = receiveInput;
         interactor.ReceiveInput = receiveInput;
-        attachmentCarrier.ReceiveInput = receiveInput;
+        carrier.ReceiveInput = receiveInput;
     }
 }

@@ -90,6 +90,7 @@ public class Thruster : MonoBehaviour, IAttachable, IInteractable
 
     public void OnInteractHeld()
     {
-        Thrust();
+        if(ship != null) // "if attached"
+            Thrust();
     }
 }
