@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour, IInputReceiver
 {
-    private Rigidbody2D rb;
+    public Rigidbody2D rigidbody2D { get; private set; }
     private List<Thruster> downThrusters = new List<Thruster>();
     private List<Thruster> leftThrusters = new List<Thruster>();
     private List<Thruster> rightThrusters = new List<Thruster>();
@@ -19,7 +19,7 @@ public class Ship : MonoBehaviour, IInputReceiver
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
         allThrusters = new List<List<Thruster>>
         {
             upThrusters,
@@ -28,9 +28,9 @@ public class Ship : MonoBehaviour, IInputReceiver
             rightThrusters
         };
 
-        CreateDebugMarker(Color.black, rb.centerOfMass);
-        rb.centerOfMass = rb.centerOfMass.RoundedToInt();
-        CreateDebugMarker(Color.red, rb.centerOfMass);
+        CreateDebugMarker(Color.black, rigidbody2D.centerOfMass);
+        rigidbody2D.centerOfMass = rigidbody2D.centerOfMass.RoundedToInt();
+        CreateDebugMarker(Color.red, rigidbody2D.centerOfMass);
 
         rooms = GetComponentsInChildren<Room>().ToList();
         nodes = new List<RoomNode>();

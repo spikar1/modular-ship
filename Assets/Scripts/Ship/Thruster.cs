@@ -2,8 +2,8 @@
 using System;
 
 [SelectionBase]
-public class Thruster : MonoBehaviour, IAttachable {
-
+public class Thruster : MonoBehaviour, IAttachable, IInteractable
+{
     private static readonly float timeToCoolDown = .5f;
     private static readonly Color thrustingColor = Color.red;
     private static readonly Color notThrustingColor = Color.white;
@@ -13,10 +13,9 @@ public class Thruster : MonoBehaviour, IAttachable {
     /// NOTE: It's assumed that the ship starts out pointing in the direction y+. 
     /// </summary>
     public Direction direction { get; private set; }
-    [SerializeField]
-    private float force = 2f;
-    [SerializeField]
-    private Renderer fireRenderer;
+
+    [SerializeField] private float force = 2f;
+    [SerializeField] private Renderer fireRenderer;
 
     private float lastThrustTime;
     private Color color = Color.white;
@@ -24,29 +23,50 @@ public class Thruster : MonoBehaviour, IAttachable {
 
     private Ship ship;
 
-    private void Awake() {
+    private void Awake()
+    {
         fireRenderer.sharedMaterial = material = new Material(fireRenderer.sharedMaterial);
     }
 
     public Direction GetThrustDirection() => ((Vector2) transform.up).GetClosestDirection();
 
-    public Vector2 Thrust() {
+    public void Thrust()
+    {
+        Vector2 thrustLocal = direction.ToVector2() * force;
+        Vector2 thrustWorld = ship.transform.rotation * thrustLocal;
+
+        Vector2 thrustPos = transform.position;
+        
+        ship.rigidbody2D.AddForceAtPosition(thrustWorld, thrustPos.RoundedToInt());
+        Debug.DrawLine(thrustPos, thrustPos + thrustWorld);
+
         lastThrustTime = Time.time;
-        return direction.ToVector2() * force;
     }
 
-    private void Update() {
+    private void Update()
+    {
         float timeSinceThrusted = Time.time - lastThrustTime;
         Color wantedColor = Color.Lerp(thrustingColor, notThrustingColor, timeSinceThrusted / timeToCoolDown);
-        if(wantedColor != color) {
+        if (wantedColor != color)
+        {
             material.color = color = wantedColor;
         }
     }
 
-    private void OnDrawGizmosSelected() {
-        var dir = GetThrustDirection();
+    private void OnDrawGizmosSelected()
+    {
+        if (!ship)
+            return;
         var from = transform.position;
-        var to = transform.position - (Vector3)dir.ToVector2();
+
+        var thrustLocal = direction.ToVector2() * force;
+        var thrustWorld = ship.transform.rotation * thrustLocal;
+
+        var to = transform.position - thrustLocal.ToVector3();
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(from, to);
+        to = transform.position - thrustWorld;
+        Gizmos.color = Color.green;
         Gizmos.DrawLine(from, to);
     }
 
@@ -64,5 +84,10 @@ public class Thruster : MonoBehaviour, IAttachable {
             ship.DeregisterThruster(this);
             ship = null;
         }
+    }
+
+    public void OnInteract()
+    {
+        Thrust();
     }
 }
