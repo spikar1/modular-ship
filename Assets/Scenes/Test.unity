@@ -6287,7 +6287,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2101976381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.02, y: 3.29, z: 0}
+  m_LocalPosition: {x: -6.02, y: 4.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6304,9 +6304,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265e01db45775614bb0b25bf7a44b168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
-  radius: 50
-  strength: 20
+  hp: 50
+  radius: 30
+  pushForce: 100
+  strength: 2
 --- !u!4 &2143322062 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469,

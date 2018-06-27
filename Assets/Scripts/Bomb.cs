@@ -5,8 +5,18 @@ using UnityEngine;
 public class Bomb : MonoBehaviour, IDamagable {
     public int hp;
     public float radius = 2;
+    public float pushForce = 10;
     public float strength = 2;
     ParticleSystem particle;
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        var damageable = collision.collider.GetComponent<IDamagable>();
+        if (damageable != null) {
+            damageable.Damage(collision.relativeVelocity, 10f);
+            Damage(Vector2.zero, 3f);
+        }
+    }
+
     public void Damage(Vector2 relativeVelocity, float damage) {
         hp -= (int)damage;
         if (hp <= 0)
@@ -31,7 +41,7 @@ public class Bomb : MonoBehaviour, IDamagable {
         }
 
         for (int i = 0; i < rbs.Count; i++) {
-            rbs[i].AddExplosionForce(strength, transform.position, radius);
+            rbs[i].AddExplosionForce(pushForce, transform.position, radius);
         }
 
         for (int i = dams.Count - 1; i >= 0; i--) {
@@ -41,5 +51,9 @@ public class Bomb : MonoBehaviour, IDamagable {
         }
         
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos() {
+        MoreGizmos.DrawCircle(transform.position, radius, 15, Color.red);
     }
 }
