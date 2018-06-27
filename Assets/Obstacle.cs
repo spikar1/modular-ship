@@ -14,6 +14,7 @@ public class Obstacle : MonoBehaviour, IDamagable {
 
     public void Damage(Vector2 relativeVelocity, float damage) {
         hp -= (int)damage;
+        DamageText.ShowDamageText(gameObject, damage);
         if (hp <= 0)
             Destroy(gameObject);
     }

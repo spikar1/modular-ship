@@ -33,7 +33,8 @@ public class RandomObstacles : MonoBehaviour {
                 y = -y;
             var randPos = new Vector3(x, y, 0);
 
-            Instantiate(template, randPos, Quaternion.identity);
+            var inst = Instantiate(template, randPos, Quaternion.identity);
+            inst.name = "obstacle_" + i;
         }
         Destroy(template);
     }

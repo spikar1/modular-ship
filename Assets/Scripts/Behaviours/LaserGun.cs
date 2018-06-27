@@ -21,7 +21,6 @@ public class LaserGun : MonoBehaviour, IInputReciever {
 
     void RotateTurret(Vector2 axis) {
         angle = Mathf.Clamp(transform.localRotation.eulerAngles.z + -axis.x * 2, 0, maxRotation);
-        print(angle);
         transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
