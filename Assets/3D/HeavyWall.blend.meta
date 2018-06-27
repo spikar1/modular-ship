@@ -27,6 +27,9 @@ ModelImporter:
     100042: diagonal_01_col
     100044: straight_00_col
     100046: straight_01_col
+    100048: straight_00_001
+    100050: straight_02
+    100052: straight_02_col
     400000: //RootNode
     400002: 00
     400004: 01
@@ -51,7 +54,12 @@ ModelImporter:
     400042: diagonal_01_col
     400044: straight_00_col
     400046: straight_01_col
+    400048: straight_00_001
+    400050: straight_02
+    400052: straight_02_col
     2100000: unnamed
+    2100002: Wall
+    2100004: Glass
     2300000: //RootNode
     2300002: 00
     2300004: 01
@@ -76,6 +84,9 @@ ModelImporter:
     2300042: diagonal_01_col
     2300044: straight_00_col
     2300046: straight_01_col
+    2300048: straight_00_001
+    2300050: straight_02
+    2300052: straight_02_col
     3300000: //RootNode
     3300002: 00
     3300004: 01
@@ -100,6 +111,9 @@ ModelImporter:
     3300042: diagonal_01_col
     3300044: straight_00_col
     3300046: straight_01_col
+    3300048: straight_00_001
+    3300050: straight_02
+    3300052: straight_02_col
     4300000: Cube
     4300002: 00
     4300004: 01
@@ -124,6 +138,9 @@ ModelImporter:
     4300042: diagonal_01_col
     4300044: corner_01_col
     4300046: straight_01_col
+    4300048: straight_00_001
+    4300050: straight_02_col
+    4300052: straight_02
     7400000: Default Take
     9500000: //RootNode
   externalObjects: {}
