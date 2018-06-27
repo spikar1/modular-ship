@@ -4,12 +4,6 @@ using System;
 [SelectionBase]
 public class Thruster : MonoBehaviour, IAttachable {
 
-    private static readonly Vector2[] directions = {
-        Vector2.up,
-        Vector2.down,
-        Vector2.left,
-        Vector2.right
-    };
     private static readonly float timeToCoolDown = .5f;
     private static readonly Color thrustingColor = Color.red;
     private static readonly Color notThrustingColor = Color.white;

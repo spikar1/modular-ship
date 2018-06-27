@@ -663,18 +663,6 @@ Prefab:
       propertyPath: m_Name
       value: Thruster (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20f3e3fd37893a844b6585d88a900469, type: 2}
   m_IsPrefabParent: 0
@@ -2573,8 +2561,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114514770276144956, guid: d868cfe68cf92d5438bfc300bca43035,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: directionParent
       value: 
       objectReference: {fileID: 266667320}
@@ -2587,8 +2574,7 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.width
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114514770276144956, guid: d868cfe68cf92d5438bfc300bca43035,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: collidableMask.m_Bits
       value: 1
       objectReference: {fileID: 0}
@@ -3401,7 +3387,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4600029372654012, guid: 1a4a7fc649ff25c4fbe4104605560b3b, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4600029372654012, guid: 1a4a7fc649ff25c4fbe4104605560b3b, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -3546,93 +3532,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4077020975998728, guid: 20f3e3fd37893a844b6585d88a900469,
     type: 2}
   m_PrefabInternal: {fileID: 107312026}
---- !u!1 &1292469269
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1292469270}
-  - component: {fileID: 1292469271}
-  - component: {fileID: 1292469272}
-  m_Layer: 10
-  m_Name: DoorToggle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1292469270
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1292469269}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: -0.48, y: -2.028, z: -0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1946610856}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1292469271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1292469269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f79d9304efd65134d9ad66896ea6e852, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionsOnInteract:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ToggleDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 953208114}
-        m_MethodName: ToggleDoor
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  actionsOnInteractWithEntity:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: EntityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!58 &1292469272
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1292469269}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &1351456854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3874,7 +3773,7 @@ Transform:
   - {fileID: 784748695}
   - {fileID: 2115025483}
   m_Father: {fileID: 1946610856}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1398257628
 GameObject:
@@ -4304,7 +4203,7 @@ Transform:
   - {fileID: 2032963402}
   - {fileID: 388707112}
   m_Father: {fileID: 1946610856}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1509159784
 Prefab:
@@ -4572,18 +4471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d65fcef4f324b45b0025499683f761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionsOnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  actionsOnInteractWithEntity:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: EntityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  entity: {fileID: 0}
   ejectTransform: {fileID: 518018617}
-  ejectPoint: {x: 0, y: 0, z: 0}
   behaviours:
   - {fileID: 266667318}
 --- !u!58 &1639413509
@@ -4796,18 +4684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d65fcef4f324b45b0025499683f761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionsOnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  actionsOnInteractWithEntity:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: EntityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  entity: {fileID: 0}
   ejectTransform: {fileID: 2042945896}
-  ejectPoint: {x: 0, y: 0, z: 0}
   behaviours:
   - {fileID: 1220915531}
 --- !u!4 &1714838619
@@ -4822,7 +4699,7 @@ Transform:
   m_Children:
   - {fileID: 2042945896}
   m_Father: {fileID: 1946610856}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1714838620
 BoxCollider2D:
@@ -4962,7 +4839,7 @@ Transform:
   m_Children:
   - {fileID: 282150591}
   m_Father: {fileID: 1946610856}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1796555831
 MonoBehaviour:
@@ -5017,18 +4894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d65fcef4f324b45b0025499683f761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionsOnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  actionsOnInteractWithEntity:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: EntityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  entity: {fileID: 0}
   ejectTransform: {fileID: 282150591}
-  ejectPoint: {x: 0, y: 0, z: 0}
   behaviours:
   - {fileID: 1220915531}
 --- !u!1 &1807863211
@@ -5774,7 +5640,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1292469270}
   - {fileID: 1714838619}
   - {fileID: 1781540221}
   - {fileID: 2065269922}
@@ -6440,7 +6305,7 @@ Transform:
   m_Children:
   - {fileID: 76339516}
   m_Father: {fileID: 1946610856}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -95.97}
 --- !u!4 &2073929375 stripped
 Transform:
@@ -6536,8 +6401,7 @@ Prefab:
       propertyPath: m_Name
       value: Player 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114514770276144956, guid: d868cfe68cf92d5438bfc300bca43035,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: player
       value: 1
       objectReference: {fileID: 0}
@@ -6551,11 +6415,15 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.x
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114514770276144956, guid: d868cfe68cf92d5438bfc300bca43035,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: directionParent
       value: 
       objectReference: {fileID: 266667320}
+    - target: {fileID: 114387171348062934, guid: d868cfe68cf92d5438bfc300bca43035,
+        type: 2}
+      propertyPath: player
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d868cfe68cf92d5438bfc300bca43035, type: 2}
   m_IsPrefabParent: 0
