@@ -28,7 +28,6 @@ public class Attachment : MonoBehaviour
     {
         if(walls.Count == 0)
         {
-            Debug.LogError($"Asked to attach{name} to nearest of no walls!", gameObject);
             return false;
         }
 

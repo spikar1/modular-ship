@@ -402,7 +402,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6dab105739bb745b5e7ce5383df89f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFiring: 0
   maxRotation: 153.48
+  muzzle: {fileID: 0}
 --- !u!1001 &107312026
 Prefab:
   m_ObjectHideFlags: 0
@@ -6527,9 +6529,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265e01db45775614bb0b25bf7a44b168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 0
-  radius: 20
-  strength: 1
+  hp: 5
+  explosion: {fileID: 11400000, guid: 7736e64bfcfeeba46847cc13c5161d9b, type: 2}
 --- !u!1 &2115025482
 GameObject:
   m_ObjectHideFlags: 0
