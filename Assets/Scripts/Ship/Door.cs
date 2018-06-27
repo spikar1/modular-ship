@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour {
+public class Door : MonoBehaviour, IInteractable {
 
-    public void ToggleDoor() {
-        GetComponent<PolygonCollider2D>().enabled = !GetComponent<PolygonCollider2D>().enabled;
+    public void OnInteract() {
+        GetComponent<PolygonCollider2D>().isTrigger = !GetComponent<PolygonCollider2D>().isTrigger;
         GetComponent<MeshRenderer>().enabled = !GetComponent<MeshRenderer>().enabled;
     }
 }

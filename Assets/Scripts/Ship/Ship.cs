@@ -109,20 +109,20 @@ public class Ship : MonoBehaviour, IInputReciever
 
         switch (thruster.direction)
         {
-            case Direction.Up:
+            case Direction.N:
                 upThrusters.Add(thruster);
                 break;
-            case Direction.Down:
+            case Direction.S:
                 downThrusters.Add(thruster);
                 break;
-            case Direction.Right:
+            case Direction.E:
                 rightThrusters.Add(thruster);
                 break;
-            case Direction.Left:
+            case Direction.W:
                 leftThrusters.Add(thruster);
                 break;
             default:
-                throw new ArgumentOutOfRangeException();
+                break;
         }
     }
 

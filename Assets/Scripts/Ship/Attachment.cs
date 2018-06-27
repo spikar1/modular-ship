@@ -12,16 +12,16 @@ public class Attachment : MonoBehaviour
         attachables = GetComponents<IAttachable>();
     }
 
-    //Called by UnityEvent
-    public void TryPickUp(Entity picker)
+    public bool CanBePickedUp()
     {
-        if (IsCarried)
-            return;
-
-        picker.StartCarrying(this);
-        attachedTo.attachedThing = null;
+        return !IsCarried; //@TODO: Raycast maybe?
+    }
+    
+    public void OnPickUp()
+    {
         foreach (var attachable in attachables)
             attachable.OnDetach();
+        attachedTo.attachedThing = null;
     }
 
     public bool TryAttachToNearest(List<Wall> walls)
@@ -52,9 +52,6 @@ public class Attachment : MonoBehaviour
             Debug.LogWarning($"Couldn't find any free walls when attaching {name}", gameObject);
             return false;
         }
-
-        if (closestDistance > 1f)
-            Debug.LogWarning($"The closest wall to {name} is more than 1f away!", gameObject);
 
         closest.attachedThing = this;
         attachedTo = closest;

@@ -1,96 +1,41 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-public sealed class Seat : Interactable
+public sealed class Seat : MonoBehaviour
 {
-    public Entity entity;
-    public Transform ejectTransform;
-    public Inputs inputs;
+    [SerializeField] private Transform ejectTransform;
+    [SerializeField] private GameObject[] behaviours;
+    private List<IInputReceiver> inputReceivers; 
 
-    public Vector3 ejectPoint;
+    [NonSerialized] public Sitter sitter;
+    public Vector3 ejectPoint { get; private set; }
 
-    private bool entityFirstFrame = true; 
-
-    public GameObject[] behaviours;
-    
-    public void Start()
+    private void Awake()
     {
-        ejectPoint = transform.position + Vector3.up;
         if (ejectTransform)
             ejectPoint = ejectTransform.position;
-    }
-
-    public void Update()
-    {
-        ejectPoint = ejectTransform.position;
-        if (entity)
-        {
-            if (entityFirstFrame)
-            {
-                OnSeated(entity);
-                entityFirstFrame = false;
-            }
-            WhileSeated(entity);
-        }
         else
-            entityFirstFrame = true;
-    }
+            ejectPoint = transform.position + Vector3.up;
 
-    private void OnEject(Entity _entity)
-    {
-        for (int i = 0; i < behaviours.Length; i++) {
-            IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
-            if (behaviour == null) {
-                Debug.LogError("GameObject should contain IBehaviour!");
-            }
-        }
-    }
-
-    private void OnSeated(Entity _entity)
-    {
-        for (int i = 0; i < behaviours.Length; i++) {
-            IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
-            if (behaviour == null) {
-                Debug.LogError("GameObject should contain IBehaviour!");
-            }
-        }
-    }
-
-    private void WhileSeated(Entity _entity)
-    {
-        for (int i = 0; i < behaviours.Length; i++) {
-            IInputReciever behaviour = behaviours[i].GetComponent<IInputReciever>();
-            if (behaviour == null) {
-                Debug.LogError("GameObject should contain IBehaviour!");
-            }
-            else
-            {
-                behaviour.ReceiveInput(inputs);
-            }
-        }
-    }
-
-    public override void OnInteract(Entity entity)
-    {
-        base.OnInteract(entity);
-        
-        switch (entity.state)
+        inputReceivers = new List<IInputReceiver>();
+        foreach (var b in behaviours)
         {
-            
-            case Entity.State.normal:
-                this.entity = entity;
-                this.entity.seat = this;
-                this.entity.transform.position = transform.position;
-                this.entity.transform.parent = transform;
-                this.entity.state = Entity.State.seated;
-                break;
-            case Entity.State.seated:
-                OnEject(entity);
-                this.entity = null;
-                entity.seat = null;
-                entity.transform.position = ejectPoint;
-                entity.transform.parent = entity.directionParent;
-                entity.state = Entity.State.normal;
-                break;
+            var ir = b.GetComponent<IInputReceiver>();
+            if (ir != null) 
+                inputReceivers.Add(ir);
+            else
+                Debug.LogWarning(
+                    $"Object {b.name} is attached as an inputreceiver to seat {name}, but it's not " +
+                    $"got any inputReceivers attached!", b);
+        }
+    }
+
+    public void OnUpdate(Inputs inputs)
+    {
+        foreach (var receiver in inputReceivers)
+        {
+            receiver.OnUpdate(inputs);
         }
     }
 }
