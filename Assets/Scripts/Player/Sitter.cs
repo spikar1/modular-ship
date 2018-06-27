@@ -83,7 +83,7 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
         if (currentSeat != null)
         {
             currentSeat.sitter = null;
-            transform.position = currentSeat.ejectPoint;
+            transform.position = currentSeat.transform.position + Vector3.forward * .4f;
         }
         else
         {

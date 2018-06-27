@@ -27,7 +27,6 @@ public class RoomNode : MonoBehaviour {
 
     public void UpdateCollisionMesh()
     {
-        
         var meshFilter = GetComponent<MeshFilter>().sharedMesh;
         if (meshFilter == null)
             return;

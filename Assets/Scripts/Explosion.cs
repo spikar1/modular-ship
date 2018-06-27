@@ -33,4 +33,5 @@ public class Explosion : ScriptableObject {
             dams[i].GetComponent<IDamagable>().Damage(Vector2.zero, damage);
         }
     }
+
 }

@@ -5,6 +5,7 @@ public class Bomb : MonoBehaviour, IDamagable {
 
     ParticleSystem particle;
     public Explosion explosion;
+    bool hasExploded = false;
 
     private void Awake()
     {
@@ -26,13 +27,12 @@ public class Bomb : MonoBehaviour, IDamagable {
     public void Damage(Vector2 relativeVelocity, float damage) {
         hp -= (int)damage;
         if (hp <= 0) {
-            Invoke(nameof(Explode), 0.01f);
+            if (!hasExploded) {
+                hasExploded = true;
+                explosion.Explode(transform.position);
+            }
             Destroy(gameObject);
         }
-    }
-
-    void Explode() {
-        explosion.Explode(transform.position);
     }
 
     private void OnDrawGizmos() {

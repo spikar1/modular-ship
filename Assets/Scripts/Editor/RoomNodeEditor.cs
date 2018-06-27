@@ -228,6 +228,8 @@ public class RoomNodeEditor : Editor
 
     private void SetMesh(RoomNode roomNode, WallOrientation orientation, int meshIndex = -1)
     {
+        roomNode.gameObject.name = "Node_" + orientation.ToString();
+
         var meshFilter = roomNode.GetComponent<MeshFilter>();
         if (!meshFilter)
             meshFilter = roomNode.gameObject.AddComponent<MeshFilter>();
