@@ -7,7 +7,7 @@ public class PlayerCamera : MonoBehaviour {
     int player;
 
     private void Start() {
-        player = transform.parent.GetComponent<Player>().player;
+        player = transform.parent.GetComponent<InputHandler>().player;
     }
 
     private void Update () {

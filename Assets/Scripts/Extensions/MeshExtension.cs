@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public static class MeshExtension
 {
@@ -73,4 +74,21 @@ public static class Physics2DExtension
         } 
         return hitInfo.collider != null; 
     } 
+}
+
+public static class Physics2DHelper
+{
+    private static readonly Collider2D[] buffer = new Collider2D[100];
+    public static void GetAllNear<T>(Vector2 fromPoint, float radius, int layermask, List<T> results)
+    {
+        results.Clear();
+        var numFound = Physics2D.OverlapCircleNonAlloc(fromPoint, radius, buffer, layermask);
+        for (int i = 0; i < numFound; i++)
+        {
+            var foundObj = buffer[i].GetComponentInParent<T>();
+            if (foundObj == null)
+                continue;
+            results.Add(foundObj);
+        }
+    }
 }
