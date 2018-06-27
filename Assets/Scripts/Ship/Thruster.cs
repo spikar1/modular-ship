@@ -36,7 +36,7 @@ public class Thruster : MonoBehaviour, IAttachable, IInteractable
         Vector2 thrustWorld = ship.transform.rotation * thrustLocal;
 
         Vector2 thrustPos = transform.position;
-        
+
         ship.rigidbody2D.AddForceAtPosition(thrustWorld, thrustPos.RoundedToInt());
         Debug.DrawLine(thrustPos, thrustPos + thrustWorld);
 
@@ -86,7 +86,9 @@ public class Thruster : MonoBehaviour, IAttachable, IInteractable
         }
     }
 
-    public void OnInteract()
+    public void OnInteractDown() { }
+
+    public void OnInteractHeld()
     {
         Thrust();
     }

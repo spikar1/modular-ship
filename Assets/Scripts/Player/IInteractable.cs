@@ -1,4 +1,5 @@
 ﻿public interface IInteractable
 {
-    void OnInteract();
+    void OnInteractDown();
+    void OnInteractHeld();
 }
