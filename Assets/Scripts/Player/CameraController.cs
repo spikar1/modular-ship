@@ -16,7 +16,6 @@ public class CameraController : MonoBehaviour, IPlayerInputReceiver {
     }
 
     public void OnUpdate(Inputs inputs) {
-        Debug.Log(inputs.cameraRotation);
         RotateCamera(inputs.cameraRotation);
         ZoomCamera(inputs.cameraZoom);
     }
@@ -27,7 +26,7 @@ public class CameraController : MonoBehaviour, IPlayerInputReceiver {
     }
 
     private void ZoomCamera(float zoom) {
-        cameraTransform.position += cameraTransform.GetChild(0).forward * zoom;
+        wantedOffset += cameraTransform.GetChild(0).forward * zoom;
     }
 
     public int InputOrder => InputReceiverOrder.Camera;
