@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Gun : MonoBehaviour, IInputReceiver {
+public abstract class Gun : MonoBehaviour, ISeatInputReceiver {
     public bool isFiring;
     float angle = 0;
     public float maxRotation;
@@ -16,6 +16,10 @@ public abstract class Gun : MonoBehaviour, IInputReceiver {
             EndShoot();
 
         RotateTurret(inputs.axis);
+    }
+
+    public void OnSeated(Sitter sitter) {
+        sitter.GetComponent<CameraController>().target = transform;
     }
 
     void RotateTurret(Vector2 axis) {
