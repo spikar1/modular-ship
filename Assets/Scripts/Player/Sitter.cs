@@ -116,7 +116,6 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
     }
 
     void ShowHologram(Seat seat) {
-        print("hello");
         selectionHologram.SetActive(true);
         MonoBehaviour mb = ((MonoBehaviour)seat);
         hologramMeshFilter.mesh = mb.GetComponentInChildren<MeshFilter>().mesh;

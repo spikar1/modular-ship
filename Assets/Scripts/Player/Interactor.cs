@@ -15,7 +15,7 @@ public class Interactor : MonoBehaviour, IToggelableInputReceiver
     private void Start()
     {
         ReceiveInput = true;
-        selectionHologram = new GameObject("Selection Hologram");
+        selectionHologram = new GameObject(name+"_Selection Hologram");
         Material mat = selectionHologram.AddComponent<MeshRenderer>().material = Instantiate(hologramMaterial);
         mat.color = hologramColor;
         hologramMeshFilter = selectionHologram.AddComponent<MeshFilter>();
@@ -27,7 +27,6 @@ public class Interactor : MonoBehaviour, IToggelableInputReceiver
         /*if (!inputs.interactDown && !inputs.interactHeld)
             return;*/
         Physics2DHelper.GetAllNear(transform.position, 1f, -1, closeInteractables);
-
         HideHologram();
         foreach (var interactable in closeInteractables)
         {
