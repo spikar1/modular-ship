@@ -27,6 +27,10 @@ public abstract class Gun : MonoBehaviour, ISeatInputReceiver {
         transform.localRotation = Quaternion.Euler(0, 0, angle);
     }
 
+    public void RotateTurretTowards(float speed, Vector2 target) {
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, target - (Vector2)transform.position), speed);
+    }
+
     public abstract void StartShoot();
     public abstract void EndShoot();
 
