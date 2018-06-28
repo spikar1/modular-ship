@@ -27,7 +27,11 @@ public class ProjectileGun : Gun {
     void Shoot() {
         if (timeSinceLastShot >= 1 / maxTriggerRate) {
             Rigidbody2D projectileRb = Instantiate(projectilePrefab, muzzle.position, Quaternion.identity).GetComponent<Rigidbody2D>();
-            projectileRb.velocity = transform.up * projectileSpeed;
+            Vector2 parentVel = Vector2.zero;
+            Rigidbody2D parentRb = GetComponentInParent<Rigidbody2D>();
+            if (parentRb != null)
+                parentVel = parentRb.velocity;
+            projectileRb.velocity = parentVel + (Vector2)transform.up * projectileSpeed;
             timeSinceLastShot = 0;
         }
     }
