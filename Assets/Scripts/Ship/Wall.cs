@@ -22,9 +22,6 @@ public class Wall : MonoBehaviour, IDamagable {
 
     public void Initialize(RoomNode roomNode) {
         this.roomNode = roomNode;
-    }
-
-    void Start() {
         var collider = GetComponent<Collider2D>();
         if (!collider) {
             Debug.LogWarning($"Wall {name} doesn\'t have a collider!", this);
@@ -44,6 +41,9 @@ public class Wall : MonoBehaviour, IDamagable {
                 attachPoint = orientation.ToOffset() * .5f;
             }
         }
+    }
+
+    void Start() {
 
         if (name.StartsWith("GameObject"))
             name = name.Replace("GameObject", "Wall");

@@ -12,9 +12,6 @@ public class Attachment : MonoBehaviour
         attachables = GetComponents<IAttachable>();
     }
 
-
-    public void Use() { }
-
     public bool TryPickUp(AttachmentCarrier attachmentCarrier)
     {
         if (IsCarried)
