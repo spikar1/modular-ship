@@ -16,6 +16,8 @@ public struct Inputs
     public bool sitDown;
     public bool sitUp;
 
+    public Vector2 cameraAxis;
+    /*
     public float cameraRotation;
-    public float cameraZoom;
+    public float cameraZoom;*/
 }

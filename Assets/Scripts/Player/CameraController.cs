@@ -16,8 +16,8 @@ public class CameraController : MonoBehaviour, IPlayerInputReceiver {
     }
 
     public void OnUpdate(Inputs inputs) {
-        RotateCamera(inputs.cameraRotation);
-        ZoomCamera(inputs.cameraZoom);
+        RotateCamera(inputs.cameraAxis.x);
+        ZoomCamera(inputs.cameraAxis.y);
     }
 
     private void RotateCamera(float input) {
