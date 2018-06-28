@@ -80,3 +80,27 @@ public static class DirectionExtension
         }
     }
 }
+
+public class Foo
+{
+    public Foo(Vector2 v)
+    {
+        this.v = v;
+    }
+    
+    public int i;
+    public bool b;
+    public string s;
+    private Vector2 v;
+
+    public void CreateFoo(int someInt, bool someBool, string someString)
+    {
+        
+        Foo foo = new Foo(Vector2.zero)
+        {
+            i = someInt,
+            b = someBool,
+            s = someString
+        };
+    }
+}

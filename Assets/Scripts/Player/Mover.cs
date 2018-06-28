@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Mover : MonoBehaviour, IToggelableInputReceiver
+public class Mover : MonoBehaviour, PlayerInputReceiver
 {
     private Controller controller;
     [SerializeField]

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ship : MonoBehaviour, IInputReceiver
+public class Ship : MonoBehaviour, ISeatInputReceiver
 {
     public Rigidbody2D rigidbody2D { get; private set; }
     private List<Thruster> downThrusters = new List<Thruster>();
@@ -90,6 +90,10 @@ public class Ship : MonoBehaviour, IInputReceiver
         {
             thruster.Thrust();
         }
+    }
+
+    public void OnSeated(Sitter sitter) {
+        
     }
 
     public void RegisterThruster(Thruster thruster)

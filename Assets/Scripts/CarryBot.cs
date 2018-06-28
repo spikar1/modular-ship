@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class CarryBot : MonoBehaviour, IInputReceiver, IDamagable
+public class CarryBot : MonoBehaviour, ISeatInputReceiver, IDamagable
 {
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
     public float hp = 10;
 
     [Tooltip("Clamps the tilt at a certain angle")]
@@ -14,6 +14,7 @@ public class CarryBot : MonoBehaviour, IInputReceiver, IDamagable
 
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody2D>();
         if (rb == null)
             rb = gameObject.AddComponent<Rigidbody2D>();
         rb.mass = .1f;
@@ -23,6 +24,10 @@ public class CarryBot : MonoBehaviour, IInputReceiver, IDamagable
     {
         rb.AddForce(inputs.axis * .1f);
         RotateTowardsVelocity(inputs.axis);
+    }
+
+    public void OnSeated(Sitter sitter) {
+        sitter.GetComponent<CameraController>().target = transform;
     }
 
 

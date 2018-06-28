@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour
 {
-    private IToggelableInputReceiver[] inputReceivers;
+    private PlayerInputReceiver[] inputReceivers;
     public int player;
 
     private void Start()
     {
-        inputReceivers = GetComponents<IToggelableInputReceiver>();
+        inputReceivers = GetComponents<PlayerInputReceiver>();
         Array.Sort(inputReceivers, (ir1, ir2) => ir1.InputOrder.CompareTo(ir2.InputOrder));
     }
 
@@ -42,7 +42,10 @@ public class InputHandler : MonoBehaviour
 
                 sitHeld = Input.GetKey(KeyCode.LeftShift),
                 sitDown = Input.GetKeyDown(KeyCode.LeftShift),
-                sitUp   = Input.GetKeyUp(KeyCode.LeftShift)
+                sitUp   = Input.GetKeyUp(KeyCode.LeftShift),
+                
+                cameraRotation = Input.GetMouseButton(2) ? Input.GetAxisRaw("Mouse X") : 0f,
+                cameraZoom     = Input.mouseScrollDelta.y,
             };
         }
         if (player == 1)
@@ -61,6 +64,9 @@ public class InputHandler : MonoBehaviour
                 sitHeld = Input.GetButton("Fire2"),
                 sitDown = Input.GetButtonDown("Fire2"),
                 sitUp   = Input.GetButtonUp("Fire2"),
+                
+                cameraRotation = Input.GetAxisRaw("RightStick X") * .4f,
+                cameraZoom     = -Input.GetAxisRaw("RightStick Y") * .1f,
             };
         }
 

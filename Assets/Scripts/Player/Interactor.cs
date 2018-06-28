@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactor : MonoBehaviour, IToggelableInputReceiver
+public class Interactor : MonoBehaviour, PlayerInputReceiver
 {
     public int InputOrder => InputReceiverOrder.Interactor;
     public bool ReceiveInput { get; set; }
@@ -15,8 +15,10 @@ public class Interactor : MonoBehaviour, IToggelableInputReceiver
     {
         ReceiveInput = true;
         selectionHologram = new GameObject(name + "_Selection Hologram");
-        Material mat = selectionHologram.AddComponent<MeshRenderer>().material = Instantiate(hologramMaterial);
-        mat.color = hologramColor;
+        selectionHologram.AddComponent<MeshRenderer>().material = new Material(hologramMaterial)
+        {
+            color = hologramColor,
+        };
         hologramMeshFilter = selectionHologram.AddComponent<MeshFilter>();
     }
 

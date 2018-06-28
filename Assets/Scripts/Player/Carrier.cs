@@ -1,22 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Carrier : MonoBehaviour, IToggelableInputReceiver
+public class Carrier : MonoBehaviour, PlayerInputReceiver
 {
     public int InputOrder => InputReceiverOrder.AttachmentCarrier;
     public bool ReceiveInput { get; set; }
 
     private ICarryable carriedThing;
-    private Sitter sitter;
-    private Interactor interactor;
 
     private readonly List<ICarryable> carryBuffer = new List<ICarryable>();
 
     private void Awake()
     {
         ReceiveInput = true;
-        sitter = GetComponent<Sitter>();
-        interactor = GetComponent<Interactor>();
     }
     
     public void OnUpdate(Inputs inputs)
@@ -31,8 +27,6 @@ public class Carrier : MonoBehaviour, IToggelableInputReceiver
                 if (carriedThing.TryPutDown())
                 {
                     carriedThing = null;
-                    sitter.ReceiveInput = true;
-                    interactor.ReceiveInput = true;
                 }
             }
             else if (inputs.sitHeld)
@@ -48,8 +42,6 @@ public class Carrier : MonoBehaviour, IToggelableInputReceiver
                 if (carryable.TryPickUp(this))
                 {
                     carriedThing = carryable;
-                    sitter.ReceiveInput = false;
-                    interactor.ReceiveInput = false;
                     break;
                 }
             }

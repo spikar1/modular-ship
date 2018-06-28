@@ -15,4 +15,7 @@ public struct Inputs
     public bool sitHeld;
     public bool sitDown;
     public bool sitUp;
+
+    public float cameraRotation;
+    public float cameraZoom;
 }
