@@ -10,7 +10,7 @@ public class RepairKit : MonoBehaviour, ICarryable {
 //		this
 	}
 
-	public bool TryPickUp(Carrier carrier)
+	public bool TryPickUp(AttachmentCarrier attachmentCarrier)
 	{
 //		thing
 		return false;

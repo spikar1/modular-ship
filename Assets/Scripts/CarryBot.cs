@@ -4,6 +4,8 @@ public class CarryBot : MonoBehaviour, ISeatInputReceiver, IDamagable
 {
     private Rigidbody2D rb;
     public float hp = 10;
+    public float acceleration = 1f;
+    public float maxVelocity = 10f;
 
     [Tooltip("Clamps the tilt at a certain angle")]
     public float clampAngle = 10;
@@ -12,17 +14,16 @@ public class CarryBot : MonoBehaviour, ISeatInputReceiver, IDamagable
     public float tiltAmplifier = 1;
 
 
-    void Start()
+    void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-        if (rb == null)
-            rb = gameObject.AddComponent<Rigidbody2D>();
-        rb.mass = .1f;
     }
 
     public void OnUpdate(Inputs inputs)
     {
-        rb.AddForce(inputs.axis * .1f);
+        rb.AddForce(inputs.axis * acceleration);
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+        
         RotateTowardsVelocity(inputs.axis);
     }
 
