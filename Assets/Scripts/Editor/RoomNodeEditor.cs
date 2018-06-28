@@ -247,7 +247,7 @@ public class RoomNodeEditor : Editor
         if(hasMesh)
             rn.gameObject.name = "N_" + rn.wallPiece.name + "_" + rn.wallOrientation.ToString();
         else
-            rn.gameObject.name = "N_" + "Empty_" + rn.wallOrientation.ToString();
+            rn.gameObject.name = "N_" + "Empty";
     }
 
     private void UpdateWall(GameObject go)

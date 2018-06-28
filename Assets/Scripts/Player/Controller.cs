@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
-    Vector2 lastPos;
+    Vector3 lastPos;
 
     public void Move(Vector2 velocity, LayerMask collidableMask)
     {

@@ -12,26 +12,37 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
     public int InputOrder => InputReceiverOrder.Sitter;
     public bool ReceiveInput { get; set; }
 
+    GameObject selectionHologram;
+    MeshFilter hologramMeshFilter;
+    public Material hologramMaterial;
+    public Color hologramColor;
+
     private void Awake()
     {
         mover = GetComponent<Mover>();
         interactor = GetComponent<Interactor>();
         carrier = GetComponent<Carrier>();
         ReceiveInput = true;
+
+        selectionHologram = new GameObject("Selection Hologram");
+        Material mat = selectionHologram.AddComponent<MeshRenderer>().material = Instantiate(hologramMaterial);
+        mat.color = hologramColor;
+        hologramMeshFilter = selectionHologram.AddComponent<MeshFilter>();
     }
 
     public void OnUpdate(Inputs inputs)
     {
         if (!currentSeat)
         {
-            if (inputs.sitDown)
-            {
-                var closestSeat = FindClosestSeat();
-                if (closestSeat)
-                {
+            var closestSeat = FindClosestSeat();
+            if (closestSeat) {
+                ShowHologram(closestSeat);
+                if (inputs.sitDown) {
                     SitIn(closestSeat);
                 }
             }
+            else
+                HideHologram();
         }
         else
         {
@@ -52,8 +63,10 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
         Physics2DHelper.GetAllNear(transform.position, .4f, -1, findSeatBuffer);
         for (int i = findSeatBuffer.Count - 1; i >= 0; i--)
         {
-            if(findSeatBuffer[i].sitter != null)
-                findSeatBuffer.RemoveAt(i);
+            if (findSeatBuffer[i].sitter == null)
+                continue;
+            findSeatBuffer.RemoveAt(i);
+            
         }
 
         if (findSeatBuffer.Count == 0)
@@ -76,6 +89,7 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
         currentSeat = seat;
         seat.sitter = this;
         transform.position = seat.transform.position;
+        HideHologram();
     }
 
     private void GetUp()
@@ -99,5 +113,18 @@ public class Sitter : MonoBehaviour, IToggelableInputReceiver
         mover.ReceiveInput = receiveInput;
         interactor.ReceiveInput = receiveInput;
         carrier.ReceiveInput = receiveInput;
+    }
+
+    void ShowHologram(Seat seat) {
+        selectionHologram.SetActive(true);
+        MonoBehaviour mb = ((MonoBehaviour)seat);
+        hologramMeshFilter.mesh = mb.GetComponentInChildren<MeshFilter>().mesh;
+        selectionHologram.transform.position = mb.transform.position;
+        selectionHologram.transform.localScale = mb.transform.localScale;
+        selectionHologram.transform.rotation = mb.transform.rotation;
+    }
+
+    void HideHologram() {
+        selectionHologram.SetActive(false);
     }
 }
