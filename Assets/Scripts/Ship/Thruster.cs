@@ -28,7 +28,11 @@ public class Thruster : MonoBehaviour, IAttachable, IInteractable
         fireRenderer.sharedMaterial = material = new Material(fireRenderer.sharedMaterial);
     }
 
-    public Direction GetThrustDirection() => ((Vector2) transform.up).GetClosestDirection();
+    public Direction CalculateThrustDir()
+    {
+        Vector2 localDir = transform.localRotation * Vector2.up;
+        return localDir.GetClosestDirection();
+    }
 
     public void Thrust()
     {
@@ -53,26 +57,9 @@ public class Thruster : MonoBehaviour, IAttachable, IInteractable
         }
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        if (!ship)
-            return;
-        var from = transform.position;
-
-        var thrustLocal = direction.ToVector2() * force;
-        var thrustWorld = ship.transform.rotation * thrustLocal;
-
-        var to = transform.position - thrustLocal.ToVector3();
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(from, to);
-        to = transform.position - thrustWorld;
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(from, to);
-    }
-
     public void OnAttachedTo(Wall wall)
     {
-        direction = GetThrustDirection();
+        direction = CalculateThrustDir();
         ship = wall.roomNode.room.ship;
         ship.RegisterThruster(this);
     }

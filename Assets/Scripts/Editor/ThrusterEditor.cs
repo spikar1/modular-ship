@@ -13,6 +13,7 @@ public class ThrusterEditor : Editor {
 
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
+        EditorGUILayout.EnumPopup(thruster.direction);
 
         if(GUILayout.Button("Center on axis")) {
             Undo.RecordObject(thruster.transform, "Centering thruster");
@@ -21,7 +22,7 @@ public class ThrusterEditor : Editor {
             Debug.Log(center);
             var newThrustPos = thruster.transform.localPosition;
 
-            var thrustDir = thruster.GetThrustDirection();
+            var thrustDir = thruster.CalculateThrustDir();
             if (thrustDir == Direction.N || thrustDir == Direction.S) {
                 newThrustPos.x = center.x;
             }
