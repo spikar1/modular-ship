@@ -30,7 +30,7 @@ public class Explosion : ScriptableObject {
 
         for (int i = dams.Count - 1; i >= 0; i--) {
             float damage = Mathf.InverseLerp(radius, 0, Vector2.Distance(pos, dams[i].transform.position)) * strength;
-            dams[i].GetComponent<IDamagable>().Damage(Vector2.zero, damage);
+            dams[i].GetComponent<IDamagable>().Damage(damage);
         }
     }
 

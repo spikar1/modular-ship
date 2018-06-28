@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour, IToggelableInputReceiver
 {
-    
     public int InputOrder => InputReceiverOrder.Interactor;
     public bool ReceiveInput { get; set; }
 
@@ -11,37 +10,48 @@ public class Interactor : MonoBehaviour, IToggelableInputReceiver
     MeshFilter hologramMeshFilter;
     public Material hologramMaterial;
     public Color hologramColor;
-    
+
     private void Start()
     {
         ReceiveInput = true;
-        selectionHologram = new GameObject(name+"_Selection Hologram");
+        selectionHologram = new GameObject(name + "_Selection Hologram");
         Material mat = selectionHologram.AddComponent<MeshRenderer>().material = Instantiate(hologramMaterial);
         mat.color = hologramColor;
         hologramMeshFilter = selectionHologram.AddComponent<MeshFilter>();
-        
-        
-    }
-    private readonly List<IInteractable> closeInteractables = new List<IInteractable>();
-    public void OnUpdate(Inputs inputs){
-        /*if (!inputs.interactDown && !inputs.interactHeld)
-            return;*/
-        Physics2DHelper.GetAllNear(transform.position, 1f, -1, closeInteractables);
-        HideHologram();
-        foreach (var interactable in closeInteractables)
-        {
-            if (inputs.interactDown)
-                interactable.OnInteractDown();
-            if (inputs.interactHeld)
-                interactable.OnInteractHeld();
-            ShowHologram(interactable);
-        }     
     }
 
-    void ShowHologram(IInteractable interactable)
+    private readonly List<IInteractable> closeInteractables = new List<IInteractable>();
+
+    public void OnUpdate(Inputs inputs)
+    {
+        Physics2DHelper.GetAllNear(transform.position, 1f, -1, closeInteractables);
+        closeInteractables.Sort(SortInteractables);
+        HideHologram();
+
+        if (closeInteractables.Count == 0)
+            return;
+
+        var interactable = closeInteractables[0];
+        if (inputs.interactDown)
+            interactable.OnInteractDown();
+        if (inputs.interactHeld)
+            interactable.OnInteractHeld();
+        ShowHologram(interactable);
+    }
+
+    private int SortInteractables(IInteractable x, IInteractable y)
+    {
+        var myPos = transform.position;
+        var xDist = Vector3.SqrMagnitude(((Component) x).transform.position - myPos);
+        var yDist = Vector3.SqrMagnitude(((Component) y).transform.position - myPos);
+
+        return xDist.CompareTo(yDist);
+    }
+
+    private void ShowHologram(IInteractable interactable)
     {
         selectionHologram.SetActive(true);
-        MonoBehaviour mb = ((MonoBehaviour)interactable);
+        MonoBehaviour mb = ((MonoBehaviour) interactable);
         MeshFilter mf = mb.GetComponentInChildren<MeshFilter>();
         hologramMeshFilter.mesh = mf.mesh;
         selectionHologram.transform.position = mf.transform.position;
@@ -49,7 +59,8 @@ public class Interactor : MonoBehaviour, IToggelableInputReceiver
         selectionHologram.transform.rotation = mf.transform.rotation;
     }
 
-    void HideHologram() {
+    private void HideHologram()
+    {
         selectionHologram.SetActive(false);
     }
 }

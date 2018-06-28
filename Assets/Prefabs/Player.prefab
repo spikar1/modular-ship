@@ -87,7 +87,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1724546674774426}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.87, y: 0.81, z: 0.4}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
@@ -123,7 +123,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
+    width: 0.5
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -198,6 +198,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4396d2f25d804d18a20c452a72b3b186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hologramMaterial: {fileID: 2100000, guid: 7416610a54e178e45a059fdfc342f2b9, type: 2}
+  hologramColor: {r: 1, g: 0, b: 0, a: 0.43529412}
 --- !u!114 &114034416372816928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,6 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15321f127d5c43258f056e5da25c8886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hologramMaterial: {fileID: 2100000, guid: 7416610a54e178e45a059fdfc342f2b9, type: 2}
+  hologramColor: {r: 0.7490196, g: 0.18766785, b: 0, a: 0.46666667}
 --- !u!114 &114741528369886338
 MonoBehaviour:
   m_ObjectHideFlags: 1
