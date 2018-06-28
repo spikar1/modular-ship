@@ -17,7 +17,7 @@ public class CloudSpawner : MonoBehaviour {
             float scale = Random.Range(2.5f, 6f);
             sr.transform.localScale = new Vector3(scale, scale, 2);
             float f = Random.Range(0.6f, 1f);
-            sr.color = new Color(f, f, f, Random.Range(0.5f, 1f));
+            sr.color = new Color(f, f, f, Mathf.InverseLerp(10, 40, transform.position.z));
         }
 	}
 	
