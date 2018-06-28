@@ -22,11 +22,11 @@ public class RoomNodeEditor : Editor
 
         for (var i = 0; i < roomNodes.Length; i++)
         {
-            RoomNode rn = roomNodes[i];
-            if (diagonalLastValue[i] != rn.isDiagonal && rn.GetComponent<MeshFilter>())
+            var roomNode = roomNodes[i];
+            if (diagonalLastValue[i] != roomNode.isDiagonal && roomNode.GetComponent<MeshFilter>())
             {
-                rn.meshIndex = 0;
-                SetMesh(rn, rn.wallOrientation);
+                roomNode.meshIndex = 0;
+                SetMesh(roomNode, roomNode.wallOrientation);
                 roomsUpdated = true;
             }
         }

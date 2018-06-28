@@ -8,8 +8,8 @@ public class RoomNode : MonoBehaviour {
     public bool isDiagonal;
     public Room room { get; private set; }
 
-    [NonSerialized]
-    public int meshIndex = 0;
+    [HideInInspector]
+    public int meshIndex;
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
