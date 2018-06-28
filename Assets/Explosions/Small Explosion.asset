@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d1486be30f52541ac19dcff36efb67, type: 3}
   m_Name: Small Explosion
   m_EditorClassIdentifier: 
-  radius: 30
-  pushForce: 400
-  strength: 0.1
+  radius: 10
+  pushForce: 150
+  strength: 50
