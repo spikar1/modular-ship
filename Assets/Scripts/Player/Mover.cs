@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Mover : MonoBehaviour, PlayerInputReceiver
+public class Mover : MonoBehaviour, IPlayerInputReceiver
 {
     private Controller controller;
     [SerializeField]

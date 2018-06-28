@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Sitter : MonoBehaviour, PlayerInputReceiver {
+public class Sitter : MonoBehaviour, IPlayerInputReceiver {
     private Mover mover;
     private Interactor interactor;
 

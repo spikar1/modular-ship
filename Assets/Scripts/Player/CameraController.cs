@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour, IInputReceiver {
+public class CameraController : MonoBehaviour, IPlayerInputReceiver {
     public Transform cameraTransform;
     public Transform target;
 
@@ -16,6 +16,7 @@ public class CameraController : MonoBehaviour, IInputReceiver {
     }
 
     public void OnUpdate(Inputs inputs) {
+        Debug.Log(inputs.cameraRotation);
         RotateCamera(inputs.cameraRotation);
         ZoomCamera(inputs.cameraZoom);
     }
@@ -26,6 +27,9 @@ public class CameraController : MonoBehaviour, IInputReceiver {
     }
 
     private void ZoomCamera(float zoom) {
-        cameraTransform.position += transform.GetChild(0).forward * zoom;
+        cameraTransform.position += cameraTransform.GetChild(0).forward * zoom;
     }
+
+    public int InputOrder => InputReceiverOrder.Camera;
+    public bool ReceiveInput => true;
 }

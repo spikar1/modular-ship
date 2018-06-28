@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Carrier : MonoBehaviour, PlayerInputReceiver
+public class Carrier : MonoBehaviour, IPlayerInputReceiver
 {
     public int InputOrder => InputReceiverOrder.AttachmentCarrier;
     public bool ReceiveInput { get; set; }

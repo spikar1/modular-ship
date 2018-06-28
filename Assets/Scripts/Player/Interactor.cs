@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactor : MonoBehaviour, PlayerInputReceiver
+public class Interactor : MonoBehaviour, IPlayerInputReceiver
 {
     public int InputOrder => InputReceiverOrder.Interactor;
     public bool ReceiveInput { get; set; }

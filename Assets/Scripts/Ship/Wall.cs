@@ -6,10 +6,9 @@ public class Wall : MonoBehaviour, IDamagable {
     public int integrity;
     public WallOrientation orientation;
 
-    [NonSerialized]
-    public Attachment attachedThing;
+    [NonSerialized] public Attachment attachedThing;
     public RoomNode roomNode { get; private set; }
-    
+
     //in local space
     public Vector3 attachPoint { get; private set; }
 
@@ -18,44 +17,42 @@ public class Wall : MonoBehaviour, IDamagable {
 
     private static Material materialTemplate;
     private static readonly Dictionary<int, Material> integrityToRenderer = new Dictionary<int, Material>();
-    
-    
-    public void Initialize(RoomNode roomNode)
-    {
-        this.roomNode = roomNode;
 
+
+    public void Initialize(RoomNode roomNode) {
+        this.roomNode = roomNode;
+    }
+
+    void Start() {
         var collider = GetComponent<Collider2D>();
-        if (!collider)
-        {
+        if (!collider) {
             Debug.LogWarning($"Wall {name} doesn\'t have a collider!", this);
             attachPoint = orientation.ToOffset() * .5f;
         }
-        else
-        {
+        else {
             RaycastHit2D hit;
             var myPos = (Vector2) transform.position;
             var rayDir = -orientation.ToOffset();
             var from = myPos - (rayDir * 5f);
-            if (collider.Raycast(from, rayDir, out hit, 10f))
-            {
+            if (collider.Raycast(from, rayDir, out hit, 10f)) {
                 attachPoint = transform.InverseTransformPoint(hit.point);
             }
-            else
-            {
-                Debug.LogError($"{name} can't hit self with a raycast! Casting from {from}, in direction {rayDir}", this);
+            else {
+                Debug.LogError($"{name} can't hit self with a raycast! Casting from {from}, in direction {rayDir}",
+                    this);
                 attachPoint = orientation.ToOffset() * .5f;
             }
         }
 
         if (name.StartsWith("GameObject"))
             name = name.Replace("GameObject", "Wall");
-        
+
         wallRenderer = GetComponent<Renderer>();
-        if (wallRenderer == null)
-        {
+        if (wallRenderer == null) {
             Debug.LogError($"Missing wall renderer on {name}!", this);
             return;
         }
+
         maxIntegrity = integrity;
 
         if (materialTemplate == null)
@@ -63,26 +60,23 @@ public class Wall : MonoBehaviour, IDamagable {
         SetMaterialForDurability();
     }
 
-    public void Damage(float damage)
-    {
+    public void Damage(float damage) {
         int damageRounded = (Mathf.FloorToInt(damage));
         DamageText.ShowDamageText(gameObject, damageRounded);
         integrity -= damageRounded;
-        if (integrity <= 0)
-        {
+        if (integrity <= 0) {
             Destroy(gameObject);
         }
         else
             SetMaterialForDurability();
-
     }
 
     private void SetMaterialForDurability() {
         Material mat;
-        
+
         var integrityFraction = integrity / (float) maxIntegrity;
         var integrityInt = Mathf.CeilToInt(integrityFraction * 100f);
-        
+
         if (!integrityToRenderer.TryGetValue(integrityInt, out mat)) {
             mat = new Material(materialTemplate) {
                 color = Color.Lerp(Color.black, Color.white, integrityInt / 100f)
@@ -93,9 +87,8 @@ public class Wall : MonoBehaviour, IDamagable {
         wallRenderer.sharedMaterial = mat;
     }
 
-    private void OnDrawGizmosSelected()
-    {
+    private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + (Vector3) orientation.ToOffset());
     }
-}   
+}
