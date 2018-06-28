@@ -44,29 +44,30 @@ public class InputHandler : MonoBehaviour
                 sitDown = Input.GetKeyDown(KeyCode.LeftShift),
                 sitUp   = Input.GetKeyUp(KeyCode.LeftShift),
                 
-                cameraRotation = Input.GetMouseButton(2) ? Input.GetAxisRaw("Mouse X") : 0f,
-                cameraZoom     = Input.mouseScrollDelta.y,
+                cameraAxis = {
+                    x = Input.GetMouseButton(2) ? Input.GetAxisRaw("Mouse X") : 0f,
+                    y = Input.mouseScrollDelta.y
+                }
+                
             };
         }
         if (player == 1)
         {
-            return new Inputs
-            {
+            return new Inputs {
                 axis = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")),
 
-                leftBumper  = Input.GetButton("LeftBumper"),
+                leftBumper = Input.GetButton("LeftBumper"),
                 rightBumper = Input.GetButton("RightBumper"),
 
                 interactHeld = Input.GetButton("Fire1"),
                 interactDown = Input.GetButtonDown("Fire1"),
-                interactUp   = Input.GetButtonUp("Fire1"),
+                interactUp = Input.GetButtonUp("Fire1"),
 
                 sitHeld = Input.GetButton("Fire2"),
                 sitDown = Input.GetButtonDown("Fire2"),
-                sitUp   = Input.GetButtonUp("Fire2"),
-                
-                cameraRotation = Input.GetAxisRaw("RightStick X") * .4f,
-                cameraZoom     = -Input.GetAxisRaw("RightStick Y") * .1f,
+                sitUp = Input.GetButtonUp("Fire2"),
+
+                cameraAxis = new Vector2(Input.GetAxisRaw("RightStick X") * .4f, -Input.GetAxisRaw("RightStick Y") * .1f)
             };
         }
 

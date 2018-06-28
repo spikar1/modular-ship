@@ -276,7 +276,7 @@ MonoBehaviour:
   muzzle: {fileID: 4159638806224454}
   projectilePrefab: {fileID: 50069178967186842, guid: ba35d2d2e9cd0bf47a748aa138b45d58,
     type: 2}
-  projectileSpeed: 20
+  projectileSpeed: 7.5
   maxTriggerRate: 0.6
   isAutomatic: 1
   rateOfFire: 2

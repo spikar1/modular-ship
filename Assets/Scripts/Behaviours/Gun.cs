@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Gun : MonoBehaviour, ISeatInputReceiver {
+public abstract class Gun : MonoBehaviour, ISeatInputReceiver{
     public bool isFiring;
     float angle = 0;
     public float maxRotation;
     public Transform muzzle;
+    public Transform cameraSocket;
+    public Transform CameraSocket { get { return cameraSocket; }}
 
     public void OnUpdate(Inputs inputs)
     {

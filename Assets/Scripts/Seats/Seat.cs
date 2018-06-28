@@ -48,6 +48,7 @@ public sealed class Seat : MonoBehaviour, ISeatInputReceiver {
         this.sitter = sitter;
         foreach (var receiver in seatInputReceivers) {
             receiver.OnSeated(sitter);
+
         }
     }
 
