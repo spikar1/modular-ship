@@ -7,6 +7,9 @@ public class RepairBot : MonoBehaviour, IInputReceiver, IDamagable {
     Rigidbody2D rb;
     public float hp = 10;
 
+    Carrier carrier;
+    Interactor interactor;
+
     [Tooltip("Clamps the tilt at a certain angle")]
     public float clampAngle = 10;
     [Tooltip("amplify the tilting")]
@@ -17,13 +20,19 @@ public class RepairBot : MonoBehaviour, IInputReceiver, IDamagable {
         if (rb == null)
             rb = gameObject.AddComponent<Rigidbody2D>();
         rb.mass = .1f;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        interactor = GetComponent<Interactor>();
+        carrier = GetComponent<Carrier>();
     }
 
     private void Update() {
     }
 
     public void OnUpdate(Inputs inputs) {
-         
+
+        interactor.OnUpdate(inputs);
+        carrier.OnUpdate(inputs);
         rb.AddForce(inputs.axis * .1f);
         RotateTowardsVelocity(inputs.axis);
     }
@@ -39,8 +48,8 @@ public class RepairBot : MonoBehaviour, IInputReceiver, IDamagable {
 
         transform.rotation = Quaternion.Lerp(transform.rotation,
             Quaternion.Euler(
-                Mathf.Clamp(locVel.y * tiltAmplifier, -clampAngle, clampAngle), 
-                Mathf.Clamp(-locVel.x * tiltAmplifier, -clampAngle, clampAngle), 
+                Mathf.Clamp(locVel.y * tiltAmplifier, -clampAngle, clampAngle),
+                Mathf.Clamp(-locVel.x * tiltAmplifier, -clampAngle, clampAngle),
                 transform.rotation.eulerAngles.z
                 ),
             3 * Time.deltaTime);
@@ -52,6 +61,6 @@ public class RepairBot : MonoBehaviour, IInputReceiver, IDamagable {
         if (hp <= 0) {
             print("RepairBot is now dead, make pretend!");
         }
-            
+
     }
 }
