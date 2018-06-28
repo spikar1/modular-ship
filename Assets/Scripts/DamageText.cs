@@ -8,10 +8,16 @@ public class DamageText : MonoBehaviour {
 
         DamageText dt = new GameObject().AddComponent<DamageText>();
         dt.transform.position = go.transform.position;
-        dt.ShowDamageText(go.transform.position, amount);
+        dt.ShowText(Color.red, amount);
+    }
+    
+    public static void ShowHealText(GameObject go, float amount) {
+        DamageText dt = new GameObject().AddComponent<DamageText>();
+        dt.transform.position = go.transform.position;
+        dt.ShowText(Color.green, amount);
     }
 
-    public void ShowDamageText(Vector3 pos, float amount) {
+    private void ShowText(Color color, float amount) {
         if (amount < 1) {
             Destroy(this);
             return;
@@ -21,7 +27,7 @@ public class DamageText : MonoBehaviour {
         tm.text = Mathf.Round(amount).ToString();
         tm.characterSize = .05f;
         tm.fontSize = 150;
-        tm.color = Color.red;
+        tm.color = color;
         tm.anchor = TextAnchor.MiddleCenter;
         tm.transform.position = transform.position + Vector3.up * .2f;
         tm.transform.rotation = Quaternion.Euler(-28, 0, 0);

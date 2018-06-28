@@ -7,6 +7,8 @@ public class WallEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        if (GUILayout.Button("SMASH SMASH SMASH"))
+            ((Wall) target).Damage(10f);
         if (GUILayout.Button("Update wall orientations"))
             UpdateWallOrientations();
     }

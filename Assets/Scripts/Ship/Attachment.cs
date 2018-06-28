@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class Attachment : MonoBehaviour, ICarryable
+public class Attachment : MonoBehaviour
 {
     private bool IsCarried => attachedTo == null;
     private IAttachable[] attachables;
@@ -15,7 +15,7 @@ public class Attachment : MonoBehaviour, ICarryable
 
     public void Use() { }
 
-    public bool TryPickUp(Carrier carrier)
+    public bool TryPickUp(AttachmentCarrier attachmentCarrier)
     {
         if (IsCarried)
             return false;
@@ -25,7 +25,7 @@ public class Attachment : MonoBehaviour, ICarryable
 
         attachedTo.attachedThing = null;
         attachedTo = null;
-        transform.parent = carrier.transform;
+        transform.parent = attachmentCarrier.transform;
         transform.localPosition = Vector3.zero;
 
         return true;

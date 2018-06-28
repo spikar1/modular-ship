@@ -26,7 +26,7 @@ public class Interactor : MonoBehaviour, IPlayerInputReceiver
 
     public void OnUpdate(Inputs inputs)
     {
-        Physics2DHelper.GetAllNear(transform.position, 1f, -1, closeInteractables);
+        Physics2DHelper.GetAllNear(transform.position, .5f, -1, closeInteractables);
         closeInteractables.Sort(SortInteractables);
         HideHologram();
 

@@ -13,7 +13,7 @@ public interface IPlayerInputReceiver : IInputReceiver {
 
 public static class InputReceiverOrder {
     public const int Sitter = 0;
-    public const int AttachmentCarrier = 1;
+    public const int ItemCarrier = 1;
     public const int Interactor = 2;
     public const int Mover = 3;
     public const int Camera = 4;

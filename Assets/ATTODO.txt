@@ -1,5 +1,3 @@
 fix submesh, uv on rotated walls
-fix attach thruster
-repair kit
 wall editor revert
 make dudes not pick up, make bot pick up
