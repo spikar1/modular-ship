@@ -1,28 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public static class MeshExtension {
     public static Mesh Copy(this Mesh mesh, string newName = null) {
-        return new Mesh {
-            name = newName ?? mesh.name,
-            vertices = mesh.vertices,
-            triangles = mesh.triangles,
-            bindposes = mesh.bindposes,
-            boneWeights = mesh.boneWeights,
-            colors = mesh.colors,
-            normals = mesh.normals,
-            tangents = mesh.tangents,
-            uv = mesh.uv,
-            uv2 = mesh.uv2,
-            uv3 = mesh.uv3,
-            uv4 = mesh.uv4
-        };
+        var copy = Object.Instantiate(mesh);
+        if (!string.IsNullOrWhiteSpace(newName))
+            copy.name = newName;
+        
+        return copy;
     }
 
     public static void OverwriteWith(this Mesh mesh, Mesh otherMesh) {
         mesh.vertices = otherMesh.vertices;
-        mesh.triangles = otherMesh.triangles;
+        mesh.subMeshCount = otherMesh.subMeshCount;
+        for (int i = 0; i < mesh.subMeshCount; i++) {
+            mesh.SetTriangles(otherMesh.GetTriangles(i), i);
+        }
+        
         mesh.bindposes = otherMesh.bindposes;
         mesh.boneWeights = otherMesh.boneWeights;
         mesh.colors = otherMesh.colors;
