@@ -3,11 +3,6 @@
 public class LaserGun : Gun {
     bool fireRay = false;
 
-    private void Awake()
-    {
-        
-    }
-
     public override void EndShoot() {
         fireRay = false;
     }
@@ -22,7 +17,7 @@ public class LaserGun : Gun {
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position + transform.up, transform.up);
         if (hit && hit.collider.GetComponent<IDamagable>() != null) {
-            hit.collider.GetComponent<IDamagable>().Damage(transform.up, 1);
+            hit.collider.GetComponent<IDamagable>().Damage(1);
         }
 
         Debug.DrawRay(transform.position + transform.up, transform.up * (hit ? hit.distance : 50), Color.red);

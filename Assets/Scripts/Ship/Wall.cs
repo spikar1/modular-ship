@@ -63,10 +63,11 @@ public class Wall : MonoBehaviour, IDamagable {
         SetMaterialForDurability();
     }
 
-    public void Damage(Vector2 relativeVelocity, float damage) {
-        Debug.Log(relativeVelocity.magnitude);
-        DamageText.ShowDamageText(gameObject, damage);
-        integrity -= (Mathf.FloorToInt(damage));
+    public void Damage(float damage)
+    {
+        int damageRounded = (Mathf.FloorToInt(damage));
+        DamageText.ShowDamageText(gameObject, damageRounded);
+        integrity -= damageRounded;
         if (integrity <= 0)
         {
             Destroy(gameObject);
