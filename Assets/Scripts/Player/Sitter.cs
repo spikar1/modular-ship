@@ -4,6 +4,7 @@ using UnityEngine;
 public class Sitter : MonoBehaviour, IPlayerInputReceiver {
     private Mover mover;
     private Interactor interactor;
+    private ToolCarrier toolCarrier;
 
     private Seat currentSeat;
 
@@ -18,6 +19,7 @@ public class Sitter : MonoBehaviour, IPlayerInputReceiver {
     private void Awake() {
         mover = GetComponent<Mover>();
         interactor = GetComponent<Interactor>();
+        toolCarrier = GetComponent<ToolCarrier>();
 
         ReceiveInput = true;
 
@@ -97,6 +99,7 @@ public class Sitter : MonoBehaviour, IPlayerInputReceiver {
     private void SetOtherReceiversReceiveInput(bool receiveInput) {
         mover.ReceiveInput = receiveInput;
         interactor.ReceiveInput = receiveInput;
+        toolCarrier.ReceiveInput = receiveInput;
     }
 
     private void ShowHologram(Seat seat) {

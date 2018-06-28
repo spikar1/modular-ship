@@ -8,7 +8,6 @@ public class RoomNode : MonoBehaviour {
     public bool isDiagonal;
     public Room room { get; private set; }
 
-    [HideInInspector]
     public int meshIndex;
 
     private void OnDrawGizmosSelected() {

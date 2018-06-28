@@ -111,10 +111,11 @@ public class WallPiece : ScriptableObject
                 throw new System.Exception(orientation + " is not a valid enum value");
         }
 
+        Debug.Log(index);
         if (index == -1)
             index = Random.Range(0, meshList.Count);
 
-        return meshList[index];
+        return meshList[index % meshList.Count];
     }
 
     public Mesh GetCollisionMesh(Mesh mesh)
