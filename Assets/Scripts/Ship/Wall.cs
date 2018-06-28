@@ -14,6 +14,7 @@ public class Wall : MonoBehaviour, IDamagable {
 
     private int maxIntegrity;
     private Renderer wallRenderer;
+    private float repairProgress;
 
     private static Material materialTemplate;
     private static readonly Dictionary<int, Material> integrityToRenderer = new Dictionary<int, Material>();
@@ -90,5 +91,22 @@ public class Wall : MonoBehaviour, IDamagable {
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + (Vector3) orientation.ToOffset());
+    }
+
+    public void Repair(float repairAmount) {
+        if (integrity == maxIntegrity)
+            return;
+        repairProgress += repairAmount;
+        int pointsRepaired = 0;
+        while (repairProgress >= 1f && integrity < maxIntegrity) {
+            repairProgress -= 1f;
+            integrity++;
+            pointsRepaired++;
+        }
+
+        if (pointsRepaired > 0) {
+            DamageText.ShowHealText(gameObject, pointsRepaired);
+            SetMaterialForDurability();
+        }
     }
 }
