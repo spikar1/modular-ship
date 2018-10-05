@@ -7,7 +7,7 @@ public class CloudSpawner : MonoBehaviour {
     public Sprite[] cloudSprites;
     public int amount = 50;
     public float width = 100, height = 100;
-	// Use this for initialization
+
 	void Start () {
         for (int i = 0; i < amount; i++) {
             SpriteRenderer sr = new GameObject("Cloud_" + i).AddComponent<SpriteRenderer>();
@@ -20,9 +20,5 @@ public class CloudSpawner : MonoBehaviour {
             sr.color = new Color(f, f, f, f*.5f);
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }

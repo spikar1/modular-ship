@@ -102,5 +102,6 @@ public class Foo
             b = someBool,
             s = someString
         };
+        
     }
 }
