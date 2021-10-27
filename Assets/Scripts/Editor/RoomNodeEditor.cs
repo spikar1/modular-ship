@@ -142,6 +142,7 @@ public class RoomNodeEditor : Editor {
     private void OrientationButtons(RoomNode[] roomNodes, ref bool roomsUpdated) {
         float buttonWidth = (Screen.width / 3) - 20;
         GUILayoutOption GUIbuttonWidth = GUILayout.Width(buttonWidth);
+        
 
         var isKeyDown = Event.current.type == EventType.KeyUp;
         var currentKey = isKeyDown ? Event.current.keyCode : KeyCode.None;
